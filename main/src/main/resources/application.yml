@@ -4,7 +4,7 @@ spring:
   application:
     name: main
   profiles:
-    active: malldev
+    active: malldev,wxLogin
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

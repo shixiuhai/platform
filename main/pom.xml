@@ -38,7 +38,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <!-- 其他模块不需要打包可以删除build -->
     <build>
         <plugins>
             <plugin>
