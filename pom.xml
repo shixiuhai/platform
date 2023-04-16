@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 父项目主要配置
+	1. modules
+	2. packaging
+	3. 所以子项目的groupId应该是一样的比如com.walk
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -16,10 +21,12 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<!-- 主项目要写子项目的model -->
 	<modules>
 		<module>mall-tiny</module>
 		<module>wx</module>
 		<module>main</module>
 	</modules>
+	<!-- 主项目要设置packaging -->
 	<packaging>pom</packaging>
 </project>
