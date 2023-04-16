@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 1. 子项目的depence正常使用，
+<!-- 1. 子项目的dependency正常使用，
      2. 子项目不需要打包的可以去掉build，
      3. 子项目可以不继承父pom
-     4. 子项目用到其他项目的包要使用depence
+     4. 子项目用到其他项目的包要使用dependency
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
