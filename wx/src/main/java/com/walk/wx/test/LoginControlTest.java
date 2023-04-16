@@ -1,4 +1,4 @@
-package com.walk.wx;
+package com.walk.wx.test;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
