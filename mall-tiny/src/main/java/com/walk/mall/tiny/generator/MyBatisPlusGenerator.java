@@ -2,6 +2,8 @@ package com.walk.mall.tiny.generator;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.dialect.Props;
+import lombok.extern.slf4j.Slf4j;
+
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -18,10 +20,12 @@ import java.util.Scanner;
  * MyBatisPlus代码生成器
  * Created by macro on 2020/8/20.
  */
+@Slf4j
 public class MyBatisPlusGenerator {
 
     public static void main(String[] args) {
-        String projectPath = System.getProperty("user.dir");
+        String projectPath = System.getProperty("user.dir")+"/mall-tiny";
+        log.info(projectPath);
         String moduleName = scanner("模块名");
         String[] tableNames = scanner("表名，多个英文逗号分割").split(",");
         // 代码生成器
