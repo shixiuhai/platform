@@ -1,5 +1,8 @@
 package com.walk.wx.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +28,12 @@ public class LoginControlTest {
 
     @GetMapping("/{parentId}")
     public CommonResult test2(@PathVariable Long parentId){
+        Map<String,String> m= new HashMap<>();
+        m.put("head", "xxxxxx");
+        m.put("token","33454424");
         log.info("=============out id是 {}=====================",parentId);
-        return CommonResult.success("成功", null);
+        return CommonResult.success(m,"成功");
+        // return CommonResult.success("成功", null);
     }
     
 }
