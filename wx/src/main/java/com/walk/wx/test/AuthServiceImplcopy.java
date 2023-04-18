@@ -1,13 +1,9 @@
-package com.walk.wx.service.impl;
+package com.walk.wx.test;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.walk.wx.service.AuthService;
-import com.walk.wx.service.WxMiniApi;
-import com.walk.wx.service.impl.WxMiniApiImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,28 +15,24 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImplcopy implements AuthService {
 
     @Value("${wxMini.appId}")
     private String appId;
     @Value("${wxMini.secret}")
     private String secret;
-    // private final JwtTokenUtils jwtTokenUtils;
-    @Autowired
-    private WxMiniApi wxMiniApi;
     public boolean login(String jsCode){
-        JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
-        if(jsonObject == null) {
-            throw new RuntimeException("调用微信端授权认证接口错误");
-        }
-        String openId = jsonObject.getString("openid");
-        String sessionKey = jsonObject.getString("session_key");
-        String unionId = jsonObject.getString("unionid");
         return true;
     }
-   
+    // private final JwtTokenUtils jwtTokenUtils;
+    // private final WxMiniApi wxMiniApi;
+    // private final UserService userService;
 
-
+    // public AuthServiceImpl(JwtTokenUtils jwtTokenUtils, WxMiniApi wxMiniApi, UserService userService) {
+    //     this.jwtTokenUtils = jwtTokenUtils;
+    //     this.wxMiniApi = wxMiniApi;
+    //     this.userService = userService;
+    // }
 
     // @Override
     // @Transactional(rollbackFor = Exception.class)

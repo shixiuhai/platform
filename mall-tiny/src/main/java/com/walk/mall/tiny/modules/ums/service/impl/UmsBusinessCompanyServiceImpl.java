@@ -19,7 +19,7 @@ public class UmsBusinessCompanyServiceImpl extends ServiceImpl<UmsBusinessCompan
         Page<UmsBusinessCompany> pages = new Page<>(pageNum,pageSize);
         // QueryWrapper<UmsBusinessCompany> wrapper = new QueryWrapper<>();
         
-        // Page<UmsBusinessCompany> a= page(page);
+        // Page<UmsBusinessCompany> a= this.page(pages);
         // a.getRecords().forEach(t->{
         //     t.setArea("你号");
         // });

@@ -35,6 +35,34 @@ public class UmsBusinessWorkController {
 
     }
 
+    @PostMapping("")
+    public CommonResult save(@RequestBody UmsBusinessWork umsBusinessWork){
+        boolean sucess = umsBusinessWorkService.save(umsBusinessWork);
+        if(sucess){
+            return CommonResult.success(null, null);
+        }
+        return CommonResult.failed();
+    }
+    
+    @DeleteMapping("")
+    public CommonResult delete(@RequestParam(value = "id",required = true) Integer id){
+        boolean success = umsBusinessWorkService.removeById(id);
+        if(success){
+            return CommonResult.success(null, null);
+
+        }
+        return CommonResult.failed();
+    }
+
+    @PutMapping("")
+    public CommonResult update(@RequestBody UmsBusinessWork umsBusinessWork){
+        boolean sucess = umsBusinessWorkService.updateById(umsBusinessWork);
+        if(sucess){
+            return CommonResult.success(null, null);
+        }
+        return CommonResult.failed();
+    }
+
 
     
 

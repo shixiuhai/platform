@@ -23,8 +23,7 @@
 		<java.version>1.8</java.version>
 	</properties> 
 	<!-- 主项目要写子项目的mdule
-	artifactId 里定义的名字，
-	artifactId 同时也是项目根目录文件夹名称
+	artifactId 里定义的名字
 	-->
 	<modules>
 		<module>mall-tiny</module>
