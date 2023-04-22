@@ -1,5 +1,10 @@
 package com.walk.wx.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -8,7 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.walk.wx.service.AuthService;
 import com.walk.wx.service.WxMiniApi;
 import com.walk.wx.service.impl.WxMiniApiImpl;
-
+import com.walk.mall.tiny.common.api.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -28,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
     // private final JwtTokenUtils jwtTokenUtils;
     @Autowired
     private WxMiniApi wxMiniApi;
-    public boolean login(String jsCode){
+    public  Map<String,String> login(String jsCode){
         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
         if(jsonObject == null) {
             throw new RuntimeException("调用微信端授权认证接口错误");
@@ -36,7 +41,19 @@ public class AuthServiceImpl implements AuthService {
         String openId = jsonObject.getString("openid");
         String sessionKey = jsonObject.getString("session_key");
         String unionId = jsonObject.getString("unionid");
-        return true;
+        // Map<String,String> wxUser = new HashMap<String,String>();
+        Map<String,String> wxUser = new HashMap<>();
+        wxUser.put("openId", openId);
+        wxUser.put("sessionKey",sessionKey);
+        wxUser.put("unionId",unionId);
+        
+
+        // 以下是我们生产环境正在使用的流程，供您参考一下下[呲牙]
+        // 1. 项目初始化时调用`Taro.login`接口获取到code
+        // 2. 将`code`发送给后端 后端使用code换取用户`sessionKey`，并保存起来。
+        // 3. 用户点击按钮拉起`获取手机号授权框`并确认授权后，将`iv`、`encryptedData`提交给后端
+        // 4. 后端使用 `iv` + `encryptedData` + `sessionKey`可以解出手机号并脱敏返回给前端。 自此，手机号授权流程结束。
+        return wxUser;
     }
    
 

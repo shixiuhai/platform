@@ -53,8 +53,10 @@ public class UmsBusinessWorkimgController {
     }
 
     @GetMapping("")
-    public CommonResult list(@RequestParam(value="workId",required = true) Integer workId){
-        Page<UmsBusinessWorkimg> umsBusinessWorkimgList = umsBusinessWorkimgService.list(workId);
+    public CommonResult list(@RequestParam(value="workId", required = true) Integer workId,
+                             @RequestParam(value="page", required = false, defaultValue = "1") Integer page,
+                             @RequestParam(value="size", required = false, defaultValue = "10") Integer size){
+        Page<UmsBusinessWorkimg> umsBusinessWorkimgList = umsBusinessWorkimgService.list(workId,page,size);
         return CommonResult.success(CommonPage.restPage(umsBusinessWorkimgList), null);
 
     }

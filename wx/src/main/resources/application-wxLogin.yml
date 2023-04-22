@@ -1,3 +1,6 @@
+# 3c55dc2687830eb85f4b438f3400b62b
 wxMini:
-  appId: 123
-  secret: adsgd 
+  appId: wx18d248440853df6b
+  secret: 3c55dc2687830eb85f4b438f3400b62b
+  wxUser:
+    defaultPassword: 123456

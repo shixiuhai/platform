@@ -52,8 +52,10 @@ public class UmsBusinessWorkvideoController {
     }
 
     @GetMapping("")
-    public  CommonResult list(@RequestParam(value="workId",required = true) Integer workId){
-        Page<UmsBusinessWorkvideo> umsBusinessWorkvideoList = umsBusinessWorkvideoService.list(workId);
+    public  CommonResult list(@RequestParam(value="workId", required = true) Integer workId,
+                              @RequestParam(value="page", required = false, defaultValue = "1") Integer page,
+                              @RequestParam(value="size", required = false, defaultValue = "10") Integer size){
+        Page<UmsBusinessWorkvideo> umsBusinessWorkvideoList = umsBusinessWorkvideoService.list(workId,page,size);
         return CommonResult.success(CommonPage.restPage(umsBusinessWorkvideoList), null);
     }
     

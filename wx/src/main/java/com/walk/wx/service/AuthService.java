@@ -1,5 +1,8 @@
 package com.walk.wx.service;
 import com.walk.mall.tiny.common.api.CommonResult;
+
+import java.util.Map;
+
 import com.walk.mall.tiny.common.api.CommonPage;
 
 /**
@@ -17,5 +20,7 @@ public interface AuthService {
      * @param request Http请求
      * @return 认证用户返回信息
      */
-    boolean login(String jsCode);
+    //上下两种写法都行，简写使用的较多
+    // public CommonResult login(String jsCode);
+    Map<String,String> login(String jsCode);
 }

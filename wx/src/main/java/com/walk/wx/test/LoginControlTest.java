@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessCompany;
 @Slf4j
 @RestController
-@RequestMapping("/wechat")
+@RequestMapping("/wechat1")
 public class LoginControlTest {
     // @GetMapping("/{id}")
     // public CommonResult test(@PathVariable(value = "id") Long parentId){
