@@ -2,7 +2,7 @@
 <!-- 父项目主要配置
 	1. modules
 	2. packaging
-	3. 所以子项目的groupId应该是一样的比如com.walk
+	3. groupId最好是项目文件夹根目录名称,容易记忆
 	4. 统一管理的pom里面的build页可以删掉，只有不需要打包的build都能删掉
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

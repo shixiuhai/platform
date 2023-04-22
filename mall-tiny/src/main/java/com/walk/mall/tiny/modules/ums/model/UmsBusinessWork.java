@@ -31,7 +31,7 @@ public class UmsBusinessWork implements Serializable{
      * 主持人id
      * </pre>
      */
-    private String	authorId;
+    private Long	authorId;
 
     /**
      * <pre>
