@@ -38,6 +38,9 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
     // 实现的是作品的评论
     // 作品id(workId),用户id(userId),评论内容(user_comment)
     public boolean saveComment(UmsBusinessWorkcomment umsBusinessWorkcomment){
+        if(umsBusinessWorkcomment.getWorkId()==null||umsBusinessWorkcomment.getUserId()==null){
+            return false;
+        }
         // 设置作者id
         umsBusinessWorkcomment.setAnchorId(umsBusinessWorkService.getById(umsBusinessWorkcomment.getWorkId()).getAuthorId());
         // 设置作者名称

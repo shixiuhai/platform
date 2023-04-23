@@ -37,7 +37,7 @@ public class UmsBusinessWorkController {
 
     @PostMapping("")
     public CommonResult save(@RequestBody UmsBusinessWork umsBusinessWork){
-        boolean sucess = umsBusinessWorkService.save(umsBusinessWork);
+        boolean sucess = umsBusinessWorkService.saveWork(umsBusinessWork);
         if(sucess){
             return CommonResult.success(null, null);
         }
