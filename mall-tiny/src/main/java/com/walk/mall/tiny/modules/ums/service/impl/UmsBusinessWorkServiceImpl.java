@@ -38,13 +38,18 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
     }
 
     public boolean saveWork(UmsBusinessWork umsBusinessWork){
-        if(umsBusinessWork.getAuthorId()==null){
+       try{
+            umsBusinessWork.setAnthorName(umsAdminService.getById(umsBusinessWork.getAuthorId()).getUsername());
+            umsBusinessWork.setCreatedTime(new Date());
+            this.save(umsBusinessWork);
+            return true;
+
+       }catch (Exception e){
             return false;
-        }
-        umsBusinessWork.setAnthorName(umsAdminService.getById(umsBusinessWork.getAuthorId()).getUsername());
-        umsBusinessWork.setCreatedTime(new Date());
-        this.save(umsBusinessWork);
-        return true;
+
+       }
+       
+        
     }
     
 }
