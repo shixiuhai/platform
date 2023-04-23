@@ -27,9 +27,10 @@ public class UmsBusinessWorkController {
     private UmsBusinessWorkService umsBusinessWorkService;
     @GetMapping("")
     public CommonResult list(@RequestParam(value="keyWord",required = false) String keyWord,
-                @RequestParam(value="pageNum",defaultValue = "1",required = false) Integer pageNum,
-                @RequestParam(value="pageNum",defaultValue = "10",required = false) Integer pageSize){
-        Page<UmsBusinessWork> umsBusinessWorkList= umsBusinessWorkService.list(keyWord,pageNum,pageSize);
+                             @RequestParam(value="id",required = false) Integer id,
+                             @RequestParam(value="pageNum",defaultValue = "1",required = false) Integer pageNum,
+                             @RequestParam(value="pageNum",defaultValue = "10",required = false) Integer pageSize){
+        Page<UmsBusinessWork> umsBusinessWorkList= umsBusinessWorkService.list(keyWord,id,pageNum,pageSize);
         return CommonResult.success(CommonPage.restPage(umsBusinessWorkList));
 
 

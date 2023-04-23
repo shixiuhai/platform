@@ -15,19 +15,29 @@ import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkService;
 import com.walk.mall.tiny.utils.DateUtils;
 import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 import java.util.Date;
+import java.util.Objects;
 @Slf4j
 @Service
 public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMapper,UmsBusinessWork> implements  UmsBusinessWorkService{
     @Autowired
     private UmsAdminService umsAdminService;
     @Override
-    public Page<UmsBusinessWork> list(String keyword, Integer pageNum, Integer pageSize){
+    public Page<UmsBusinessWork> list(String keyword, Integer id,Integer pageNum, Integer pageSize){
         Page<UmsBusinessWork> pages = new Page<>(pageNum,pageSize);
         QueryWrapper<UmsBusinessWork> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().orderByDesc(UmsBusinessWork::getCreatedTime);
         if(StrUtil.isNotEmpty(keyword)){
             queryWrapper.lambda().like(UmsBusinessWork::getAnthorName,keyword);
             queryWrapper.lambda().or().like(UmsBusinessWork::getTitle,keyword);
+
+        }
+        if(!Objects.isNull(id)){
+            queryWrapper.lambda().eq(UmsBusinessWork::getId,id);
+            UmsBusinessWork umsBusinessWork = new UmsBusinessWork();
+            umsBusinessWork = this.getById(id);
+            umsBusinessWork.setViewNumber(this.getById(id).getViewNumber()+1);
+            this.updateById(umsBusinessWork);
+            
 
         }
         Page<UmsBusinessWork> b = this.page(pages,queryWrapper);
