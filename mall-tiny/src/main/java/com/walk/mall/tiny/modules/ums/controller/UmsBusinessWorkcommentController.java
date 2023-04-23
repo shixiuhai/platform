@@ -3,6 +3,7 @@ package com.walk.mall.tiny.modules.ums.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,6 @@ import com.walk.mall.tiny.common.api.CommonPage;
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessWorkcomment;
 import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkcommentService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,7 +25,11 @@ public class UmsBusinessWorkcommentController {
     // 给作品添加评论
     @PostMapping("")
     public CommonResult save(@RequestBody UmsBusinessWorkcomment umsBusinessWorkcomment){
-        return CommonResult.success(null, null);
+        boolean success = umsBusinessWorkcommentService.saveComment(umsBusinessWorkcomment);
+        if(success){
+            return CommonResult.success(null, null);
+        }
+        return CommonResult.failed();
     }
     
     @GetMapping("")
