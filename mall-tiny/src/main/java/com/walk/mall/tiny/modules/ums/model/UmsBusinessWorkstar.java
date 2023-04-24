@@ -1,6 +1,7 @@
 package com.walk.mall.tiny.modules.ums.model;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -18,23 +19,29 @@ public class UmsBusinessWorkstar implements Serializable{
 
     /**
      * <pre>
-     * 作品id
+     * 作品id name
      * </pre>
      */
     private Long	workId;
+    @TableField(exist=false)
+    private String workName;
 
     /**
      * <pre>
-     * 作品主持人id
+     * 作品主持人id name
      * </pre>
      */
     private Long	anchorId;
+    @TableField(exist=false)
+    private String anchorName;
 
     /**
      * <pre>
-     * 关注作品的用户id
+     * 关注作品的用户id name
      * </pre>
      */
     private Long	userId;
+    @TableField(exist=false)
+    private String userName;
     
 }

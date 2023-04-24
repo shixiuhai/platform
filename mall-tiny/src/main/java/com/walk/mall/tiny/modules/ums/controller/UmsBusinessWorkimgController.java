@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessWorkimg;
 import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkimgService;
-import com.walk.mall.tiny.common.api.CommonResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.walk.mall.tiny.common.api.CommonPage;
+import com.walk.mall.tiny.common.api.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
