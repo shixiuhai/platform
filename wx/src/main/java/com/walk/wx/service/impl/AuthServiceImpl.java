@@ -14,6 +14,8 @@ import com.walk.wx.service.AuthService;
 import com.walk.wx.service.WxMiniApi;
 import com.walk.wx.service.impl.WxMiniApiImpl;
 import com.walk.mall.tiny.common.api.CommonResult;
+import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
+import com.walk.wx.utils.WeChatUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,18 +24,34 @@ import lombok.extern.slf4j.Slf4j;
  * @author zhuhuix
  * @date 2020-04-07
  */
+// 微信登陆
+// https://blog.csdn.net/qq_41542723/article/details/125173445
+// https://juejin.cn/post/7156992157704781831 
+// https://www.jianshu.com/p/4e4db943bfb3
+// https://blog.csdn.net/qq_41542723/article/details/125173445
+// 重要使用 https://cloud.tencent.com/developer/article/1680005
+// 重要使用 https://juejin.cn/post/7140907364966170631
+// 重要使用 https://blog.csdn.net/qq_41432730/article/details/123617323
+// 重要使用 https://juejin.cn/post/7140907364966170631#heading-8
+// 微信公众号 https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html
+
 @Slf4j
 @Service
 public class AuthServiceImpl implements AuthService {
-
+    @Value("${wxMini.wxUser.defaultPassword}")
+    private String password;
     @Value("${wxMini.appId}")
     private String appId;
     @Value("${wxMini.secret}")
     private String secret;
-    // private final JwtTokenUtils jwtTokenUtils;
+    
+    @Autowired
+    private UmsAdminService umsAdminService;
+    
     @Autowired
     private WxMiniApi wxMiniApi;
-    public  Map<String,String> login(String jsCode){
+    
+    public  Map<String,String> login(String jsCode, String encryptedData, String iv){
         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
         if(jsonObject == null) {
             throw new RuntimeException("调用微信端授权认证接口错误");
@@ -41,11 +59,16 @@ public class AuthServiceImpl implements AuthService {
         String openId = jsonObject.getString("openid");
         String sessionKey = jsonObject.getString("session_key");
         String unionId = jsonObject.getString("unionid");
-        // Map<String,String> wxUser = new HashMap<String,String>();
-        Map<String,String> wxUser = new HashMap<>();
-        wxUser.put("openId", openId);
-        wxUser.put("sessionKey",sessionKey);
-        wxUser.put("unionId",unionId);
+        
+        String result = WeChatUtil.decryptData(unionId, sessionKey, iv);
+        log.info("--------------------------------------");
+        log.info("输出的结果是{}",result);
+        log.info("--------------------------------------");
+        Map<String,String> wxUser = new HashMap<String,String>();
+        // Map<String,String> wxUser = new HashMap<>();
+        // wxUser.put("openId", openId);
+        // wxUser.put("sessionKey",sessionKey);
+        // wxUser.put("unionId",unionId);
         
 
         // 以下是我们生产环境正在使用的流程，供您参考一下下[呲牙]
@@ -56,55 +79,4 @@ public class AuthServiceImpl implements AuthService {
         return wxUser;
     }
    
-
-
-
-    // @Override
-    // @Transactional(rollbackFor = Exception.class)
-    // public Result<AuthUserDto> login(AuthUserDto authUserDto, HttpServletRequest request) {
-    //     Result<AuthUserDto> result = new Result<>();
-
-    //     //authType=1代表是微信登录
-    //     if (!StringUtils.isEmpty(authUserDto.getAuthType()) && authUserDto.getAuthType() == 1) {
-    //         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, authUserDto.getCode());
-    //         if (jsonObject == null) {
-    //             throw new RuntimeException("调用微信端授权认证接口错误");
-    //         }
-    //         String openId = jsonObject.getString(Constant.OPEN_ID);
-    //         String sessionKey = jsonObject.getString(Constant.SESSION_KEY);
-    //         String unionId = jsonObject.getString(Constant.UNION_ID);
-    //         if (StringUtils.isEmpty(openId)) {
-    //             return result.error(jsonObject.getString(Constant.ERR_CODE), jsonObject.getString(Constant.ERR_MSG));
-    //         }
-    //         authUserDto.setOpenId(openId);
-
-    //         //判断用户表中是否存在该用户，不存在则进行解密得到用户信息，并进行新增用户
-    //         Result<User> resultUser = userService.findByOpenId(openId);
-    //         if (resultUser.getModule() == null) {
-    //             String userInfo = WeChatUtil.decryptData(authUserDto.getEncryptedData(), sessionKey, authUserDto.getIv());
-    //             if (StringUtils.isEmpty(userInfo)) {
-    //                 throw new RuntimeException("解密用户信息错误");
-    //             }
-    //             User user = JSONObject.parseObject(userInfo, User.class);
-    //             if (user == null) {
-    //                 throw new RuntimeException("填充用户对象错误");
-    //             }
-    //             user.setUnionId(unionId);
-    //             userService.create(user);
-    //             authUserDto.setUserInfo(user);
-
-    //         } else {
-    //             authUserDto.setUserInfo(resultUser.getModule());
-    //         }
-
-    //         //创建token
-    //         String token = jwtTokenUtils.createToken(openId, null);
-    //         if (StringUtils.isEmpty(token)) {
-    //             throw new RuntimeException("生成token错误");
-    //         }
-    //         authUserDto.setToken(token);
-
-    //     }
-    //     return result.ok(authUserDto);
-    // }
 }

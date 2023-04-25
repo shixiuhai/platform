@@ -22,5 +22,5 @@ public interface AuthService {
      */
     //上下两种写法都行，简写使用的较多
     // public CommonResult login(String jsCode);
-    Map<String,String> login(String jsCode);
+    Map<String,String> login(String jsCode, String encryptedData, String iv);
 }
