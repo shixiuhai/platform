@@ -49,12 +49,24 @@ public class UmsBusinessWorkreserveController {
         }
         return CommonResult.failed();
     }
-    
+
     @GetMapping("")
     public CommonResult list(@RequestParam(value = "page", required = true, defaultValue = "1") Integer page,
                              @RequestParam(value = "size", required = true, defaultValue = "10") Integer size){
         Page<UmsBusinessWorkreserve> all = umsBusinessWorkreserveService.list(page, size);
         return CommonResult.success(CommonPage.restPage(all), null);
+
+    }
+
+    @GetMapping("/status")
+    public CommonResult status(@RequestParam(value = "id", required = true) Integer id,
+                               @RequestParam(value = "status", required = true) Integer status){
+
+            boolean success = umsBusinessWorkreserveService.reserveStatus(id, status);
+            if(success){
+                return CommonResult.success(null, null);
+            }
+            return CommonResult.failed();
 
     }
     

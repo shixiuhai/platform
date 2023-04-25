@@ -57,6 +57,8 @@ public class UmsBusinessWorkreserve implements Serializable{
      */
     private String	remark;
 
+    private int status;
+
 
 
 

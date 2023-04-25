@@ -6,5 +6,6 @@ import com.walk.mall.tiny.modules.ums.model.UmsBusinessWorkreserve;
 
 public interface UmsBusinessWorkreserveService extends IService<UmsBusinessWorkreserve>{
     Page<UmsBusinessWorkreserve> list(Integer page, Integer size);
+    boolean reserveStatus(Integer id,Integer Status);
     
 }

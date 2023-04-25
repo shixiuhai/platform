@@ -19,5 +19,14 @@ public class UmsBusinessWorkresServiceImpl extends ServiceImpl<UmsBusinessWorkre
         );
         return all;
     }
+
+    @Override
+    public boolean reserveStatus(Integer id,Integer Status){
+        UmsBusinessWorkreserve umsBusinessWorkreserve = new UmsBusinessWorkreserve();
+        umsBusinessWorkreserve = this.getById(id);
+        umsBusinessWorkreserve.setStatus(Status);
+        this.updateById(umsBusinessWorkreserve);
+        return true;
+    }
     
 }
