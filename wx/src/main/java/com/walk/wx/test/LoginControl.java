@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.common.api.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
-import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 @Slf4j
 @RestController
 @RequestMapping("/wechat")
