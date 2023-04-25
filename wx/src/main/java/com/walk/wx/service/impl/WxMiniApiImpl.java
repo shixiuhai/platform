@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.walk.wx.service.WxMiniApi;
 import com.walk.wx.utils.WeChatUtil;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
