@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 23/04/2023 22:04:55
+ Date: 04/05/2023 19:18:29
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `ums_admin`  (
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   `status` int(0) NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin
@@ -43,6 +43,8 @@ CREATE TABLE `ums_admin`  (
 INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, NULL, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
 INSERT INTO `ums_admin` VALUES (18, 'shixiuhai1', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, NULL, 'string', '15256728901@163.com', '小海', '这是一个什么什么样的主持人', '2023-04-15 13:48:13', NULL, 1);
 INSERT INTO `ums_admin` VALUES (19, 'shixiuhai', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, NULL, 'string', '15256728901@163.com', '小海', 'string1', '2023-04-15 20:54:38', NULL, 1);
+INSERT INTO `ums_admin` VALUES (20, 'xiaoming', '$2a$10$mIL3MGAFbiQqxz7zy/1xqe8ZjtwB9U3U/my.oFSVLvrVaRmkEUSkS', NULL, NULL, NULL, '15256728902@163.com', NULL, NULL, '2023-04-25 22:28:53', NULL, 1);
+INSERT INTO `ums_admin` VALUES (21, 'xiaoming2', '$2a$10$oc6TFOJAIdEcJsrTzJYaJOT1XDcW6rAdnC308J8/hoGQn0epAQ6qe', NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-25 22:29:11', NULL, 1);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -56,7 +58,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 303 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 304 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -112,7 +114,7 @@ CREATE TABLE `ums_business_company`  (
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司或团队联系电话',
   `wechat_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司或者团队微信号码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '公司简介描述' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '公司简介描述' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_company
@@ -130,16 +132,16 @@ CREATE TABLE `ums_business_work`  (
   `cover_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '作品封面图片地址',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '作品标题',
   `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '作品地点',
-  `view_number` int(0) NULL DEFAULT NULL COMMENT '作品查看数量',
+  `view_number` int(0) NULL DEFAULT 0 COMMENT '作品查看数量',
   `created_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '作品创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '作品表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '作品表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_work
 -- ----------------------------
-INSERT INTO `ums_business_work` VALUES (1, 19, '小明', NULL, '测试作品名字', NULL, 2, '2023-04-23 19:12:21');
-INSERT INTO `ums_business_work` VALUES (2, 3, 'admin', '作品封面图片地址', '作品标题', '作品地点', NULL, '2023-04-23 21:42:00');
+INSERT INTO `ums_business_work` VALUES (1, 19, '小明', NULL, '测试作品名字', NULL, 13, '2023-04-23 19:12:21');
+INSERT INTO `ums_business_work` VALUES (2, 3, 'admin', '作品封面图片地址', '作品标题', '作品地点', 9, '2023-04-23 23:02:27');
 
 -- ----------------------------
 -- Table structure for ums_business_workcomment
@@ -154,7 +156,7 @@ CREATE TABLE `ums_business_workcomment`  (
   `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '用户名称',
   `user_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '用户评论',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workcomment
@@ -170,7 +172,7 @@ CREATE TABLE `ums_business_workimg`  (
   `work_id` int(0) NULL DEFAULT NULL COMMENT '作品id',
   `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '作品图片',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workimg
@@ -180,20 +182,44 @@ INSERT INTO `ums_business_workimg` VALUES (2, 2, 'http://22w.bai');
 INSERT INTO `ums_business_workimg` VALUES (3, 1, 'http://sdfa');
 
 -- ----------------------------
+-- Table structure for ums_business_workreserve
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_business_workreserve`;
+CREATE TABLE `ums_business_workreserve`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `appointment_service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '预约服务',
+  `created_time` datetime(0) NOT NULL COMMENT '预约服务时间',
+  `contact_person` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '联系人',
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `status` int(0) NULL DEFAULT 0 COMMENT '预约状态 0 预约中，1 预约完成',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_business_workreserve
+-- ----------------------------
+INSERT INTO `ums_business_workreserve` VALUES (2, '预约服务', '2023-04-25 19:06:01', '联系人', '1234', '提交相关1', 1);
+INSERT INTO `ums_business_workreserve` VALUES (3, '预约服务', '2023-04-25 19:06:01', '联系人', '1234', '提交相关1', 0);
+INSERT INTO `ums_business_workreserve` VALUES (4, '预约服务', '2023-04-25 19:06:01', '联系人', '1234', '提交相关1', 0);
+
+-- ----------------------------
 -- Table structure for ums_business_workstar
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_business_workstar`;
 CREATE TABLE `ums_business_workstar`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `work_id` bigint(0) NULL DEFAULT NULL COMMENT '作品id',
-  `anchor_id` int(0) NULL DEFAULT NULL COMMENT '作品主持人id',
-  `user_id` int(0) NULL DEFAULT NULL COMMENT '关注作品的用户id',
+  `anchor_id` bigint(0) NULL DEFAULT NULL COMMENT '作品主持人id',
+  `user_id` bigint(0) NULL DEFAULT NULL COMMENT '关注作品的用户id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workstar
 -- ----------------------------
+INSERT INTO `ums_business_workstar` VALUES (1, 1, 19, 3);
+INSERT INTO `ums_business_workstar` VALUES (9, 1, 19, 18);
 
 -- ----------------------------
 -- Table structure for ums_business_workvideo
@@ -228,7 +254,7 @@ CREATE TABLE `ums_menu`  (
   `icon` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '前端图标',
   `hidden` int(0) NULL DEFAULT NULL COMMENT '前端隐藏',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台菜单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台菜单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_menu
@@ -275,7 +301,7 @@ CREATE TABLE `ums_resource_category`  (
   `name` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '分类名称',
   `sort` int(0) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '资源分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '资源分类表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_resource_category
@@ -314,7 +340,7 @@ CREATE TABLE `ums_role_menu_relation`  (
   `role_id` bigint(0) NULL DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(0) NULL DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台角色菜单关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台角色菜单关系表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role_menu_relation

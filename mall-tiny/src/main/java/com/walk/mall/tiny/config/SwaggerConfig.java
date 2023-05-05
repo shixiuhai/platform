@@ -6,6 +6,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
  */
 @Configuration
 @EnableSwagger2
+@Profile({"malldev"})
 public class SwaggerConfig extends BaseSwaggerConfig {
 
     @Override
