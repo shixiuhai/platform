@@ -33,8 +33,8 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
                 new Page<UmsBusinessWorkstar>(),
                 new QueryWrapper<UmsBusinessWorkstar>()
                     .lambda()
-                    .eq(UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
-                    .eq(UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId())       
+                    .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
+                    .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId())       
             );
             log.info("--------{}------",all.getRecords().toArray().length);
             if(all.getRecords().toArray().length>=1){
@@ -66,9 +66,9 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
 
     public boolean removeStar(UmsBusinessWorkstar umsBusinessWorkstar){ 
         LambdaQueryWrapper<UmsBusinessWorkstar> lambdaqueryWrapper = new QueryWrapper<UmsBusinessWorkstar>()
-                                                        .lambda()
-                                                        .eq(UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
-                                                        .eq(UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
+            .lambda()
+            .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
+            .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
         this.removeById(this.getOne(lambdaqueryWrapper));
         return true;
 
