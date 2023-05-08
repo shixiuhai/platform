@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -61,6 +62,17 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
             t.setWorkName(umsBusinessWorkService.getById(t.getWorkId()).getTitle());
         });
         return all;
+    }
+
+    public boolean removeStar(UmsBusinessWorkstar umsBusinessWorkstar){ 
+        LambdaQueryWrapper<UmsBusinessWorkstar> lambdaqueryWrapper = new QueryWrapper<UmsBusinessWorkstar>()
+                                                        .lambda()
+                                                        .eq(UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
+                                                        .eq(UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
+        this.removeById(this.getOne(lambdaqueryWrapper));
+        return true;
+
+
     }
      
     
