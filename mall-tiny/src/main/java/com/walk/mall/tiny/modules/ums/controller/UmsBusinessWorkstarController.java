@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +42,20 @@ public class UmsBusinessWorkstarController {
         Page<UmsBusinessWorkstar> all = umsBusinessWorkstarService.list(workId, anchorId, userId, page, size);
         return CommonResult.success(CommonPage.restPage(all), null);
 
+    }
+    
+    @DeleteMapping("")
+    public CommonResult delete(@RequestParam(value = "workId", required = false) Integer workId,
+                               @RequestParam(value = "anchorId", required = false) Integer anchorId){
 
+        UmsBusinessWorkstar  umsBusinessWorkstar = new UmsBusinessWorkstar();
+        umsBusinessWorkstar.setWorkId(workId.longValue());
+        umsBusinessWorkstar.setAnchorId(anchorId.longValue());
+        boolean success = umsBusinessWorkstarService.removeStar(umsBusinessWorkstar);
+        if(success){
+            return CommonResult.success(null, null);
+        }
+        return CommonResult.failed();
     }
 
     

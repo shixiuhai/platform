@@ -65,12 +65,18 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
     }
 
     public boolean removeStar(UmsBusinessWorkstar umsBusinessWorkstar){ 
-        LambdaQueryWrapper<UmsBusinessWorkstar> lambdaqueryWrapper = new QueryWrapper<UmsBusinessWorkstar>()
-            .lambda()
-            .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
-            .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
-        this.removeById(this.getOne(lambdaqueryWrapper));
-        return true;
+        try{
+            LambdaQueryWrapper<UmsBusinessWorkstar> lambdaqueryWrapper = new QueryWrapper<UmsBusinessWorkstar>()
+                .lambda()
+                .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
+                .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
+            this.removeById(this.getOne(lambdaqueryWrapper));
+            return true;
+
+        }catch (Exception e){
+            return false;
+        }
+        
 
 
     }
