@@ -70,7 +70,7 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
                 .lambda()
                 .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
                 .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId());
-            this.removeById(this.getOne(lambdaqueryWrapper));
+            this.removeById(this.getOne(lambdaqueryWrapper).getId());
             return true;
 
         }catch (Exception e){

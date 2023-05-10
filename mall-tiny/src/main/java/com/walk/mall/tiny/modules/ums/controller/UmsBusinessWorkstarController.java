@@ -45,12 +45,12 @@ public class UmsBusinessWorkstarController {
     }
     
     @DeleteMapping("")
-    public CommonResult delete(@RequestParam(value = "workId", required = false) Integer workId,
-                               @RequestParam(value = "anchorId", required = false) Integer anchorId){
+    public CommonResult delete(@RequestParam(value = "workId", required = true) Integer workId,
+                               @RequestParam(value = "userId", required = true) Integer userId){
 
         UmsBusinessWorkstar  umsBusinessWorkstar = new UmsBusinessWorkstar();
         umsBusinessWorkstar.setWorkId(workId.longValue());
-        umsBusinessWorkstar.setAnchorId(anchorId.longValue());
+        umsBusinessWorkstar.setUserId(userId.longValue());
         boolean success = umsBusinessWorkstarService.removeStar(umsBusinessWorkstar);
         if(success){
             return CommonResult.success(null, null);
