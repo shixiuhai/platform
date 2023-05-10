@@ -9,9 +9,10 @@ spring:
     port: 6379 # Redis服务器连接端口
     password: # Redis服务器连接密码（默认为空）
     timeout: 3000ms # 连接超时时间（毫秒）
-  multipart: 
-    max-file-size: 200M # 最大上传文件支持 multipart支持大小
-    max-request-size: 200MB  	# 设置多个文件大小为100MB formdata允许大小
+  servlet:
+    multipart: 
+      max-file-size: 200MB # 最大上传文件支持 multipart支持大小
+      max-request-size: 200MB  	# 设置多个文件大小为100MB formdata允许大小
 
 logging:
   level:
