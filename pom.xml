@@ -3,7 +3,7 @@
 	1. modules
 	2. packaging
 	3. groupId最好是项目文件夹根目录名称,容易记忆
-	4. 统一管理的pom里面的build页可以删掉，只有不需要打包的build都能删掉
+	4. 统一管理的pom里面的build页可以删掉，只要不需要打包的build都能删掉
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">

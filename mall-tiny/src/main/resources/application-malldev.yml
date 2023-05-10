@@ -57,3 +57,7 @@ secure:
       - /admin/register
       - /admin/info
       - /admin/logout
+
+fileUpload:
+  specifiedPath: C:/Users/15256/Desktop
+  sqlPath: /Desktop

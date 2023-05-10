@@ -23,14 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/work/upload")
 public class  UmsBusinessUploadController {
-    @Value("${wxMini.wxUser.defaultPassword}")
+    @Value("${fileUpload.specifiedPath}")
     private String specifiedPath;
-    @Value("${wxMini.wxUser.defaultPassword}")
+    @Value("${fileUpload.sqlPath}")
     private String sqlPath;
     @PostMapping("")
     public CommonResult upload(@RequestParam MultipartFile file) throws IOException {
-        
-        String path = FileUploadUtil.upload(file, "C:/Users/15256/Desktop", "/Desktop");
+        String path = FileUploadUtil.upload(file, specifiedPath, sqlPath);
         if(path.equals("")){
             return CommonResult.failed("文件上传格式不合规");
 
