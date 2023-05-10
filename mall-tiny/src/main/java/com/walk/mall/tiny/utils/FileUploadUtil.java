@@ -36,7 +36,7 @@ public class FileUploadUtil {
 					file2.mkdirs();
 				}
 				file.transferTo(new File(path + "/" + fileName));
-				return sqlPath + "/" + DateUtils.format(new Date(),DateUtils.DATE) + fileName;
+				return sqlPath + "/" + DateUtils.format(new Date(),DateUtils.DATE) + "/" + fileName;
 			}
 			return "";
 		} catch (Exception e) {
