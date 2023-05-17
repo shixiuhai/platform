@@ -29,14 +29,15 @@ public class  UmsBusinessUploadController {
     @Value("${fileUpload.sqlPath}")
     private String sqlPath;
     @PostMapping("")
-    public CommonResult upload(@RequestParam MultipartFile file) throws IOException {
-        String path = FileUploadUtil.upload(file, specifiedPath, sqlPath);
+    public CommonResult upload(@RequestParam MultipartFile fileName) throws IOException {
+        String path = FileUploadUtil.upload(fileName, specifiedPath, sqlPath);
         if(path.equals("")){
             return CommonResult.failed("文件上传格式不合规");
 
         }
         return CommonResult.success(path, null);
     }
+    
     @DeleteMapping("")
     public CommonResult deleteFile(@RequestParam(value="fileName",required = true) String fileName){
         boolean success = FileUploadUtil.deleteFile(specifiedPath, fileName);
