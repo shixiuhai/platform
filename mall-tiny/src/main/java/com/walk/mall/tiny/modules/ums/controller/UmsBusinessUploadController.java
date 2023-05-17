@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,14 @@ public class  UmsBusinessUploadController {
 
         }
         return CommonResult.success(path, null);
+    }
+    @DeleteMapping("")
+    public CommonResult deleteFile(@RequestParam(value="fileName",required = true) String fileName){
+        boolean success = FileUploadUtil.deleteFile(specifiedPath, fileName);
+        if(success){
+            return CommonResult.success("文件删除成功", fileName);
+        }
+        return CommonResult.failed("文件删除失败");
     }
 
 }

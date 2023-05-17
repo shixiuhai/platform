@@ -4,7 +4,8 @@ import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class FileUploadUtil {
 	/**
 	 * 
@@ -43,7 +44,19 @@ public class FileUploadUtil {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public static boolean deleteFile(String filePath, String fileName){
+		File file = new File(filePath+"/"+fileName);
+		if (file.exists()) {
+            file.delete();
+            log.info("===========文件删除成功=================");
+            return true;
+        } else {
+            log.error("===============文件删除失败==============");
+            return false;
+        }
 
+	}
 	/**
 	 * 获取文件名
 	 * @return
