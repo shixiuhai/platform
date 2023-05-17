@@ -30,6 +30,13 @@ public class UmsBusinessWorkvideo implements Serializable{
      */
     private String	videoUrl;
 
+    /**
+     * <pre>
+     * 作品类型
+     * </pre>
+     */
+    private String type;
+
 
 
 

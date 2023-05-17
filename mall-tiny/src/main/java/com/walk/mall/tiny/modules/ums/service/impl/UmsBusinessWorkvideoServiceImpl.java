@@ -13,13 +13,14 @@ import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkvideoService;
 
 @Service
 public class UmsBusinessWorkvideoServiceImpl extends ServiceImpl<UmsBusinessWorkvideoMapper,UmsBusinessWorkvideo> implements UmsBusinessWorkvideoService{
-    public Page<UmsBusinessWorkvideo> list(Integer workId,Integer page, Integer size){
-        Page<UmsBusinessWorkvideo> pages = new Page<>(page,size);
-        QueryWrapper<UmsBusinessWorkvideo> queryWrapper = new QueryWrapper<>();
-        if(!Objects.isNull(workId)){
-            queryWrapper.lambda().eq(UmsBusinessWorkvideo::getWorkId,workId);
-
-        }
-        return this.page(pages,queryWrapper);
+    public Page<UmsBusinessWorkvideo> list(Integer workId,Integer page, Integer size, Integer type){
+        Page<UmsBusinessWorkvideo> all = this.page(
+            new Page<UmsBusinessWorkvideo>(page,size),
+            new QueryWrapper<UmsBusinessWorkvideo>()
+            .lambda()
+            .eq(!Objects.isNull(workId),UmsBusinessWorkvideo::getWorkId,workId)
+            .eq(!Objects.isNull(type),UmsBusinessWorkvideo::getType,type)
+        );
+        return all;
     }
 }

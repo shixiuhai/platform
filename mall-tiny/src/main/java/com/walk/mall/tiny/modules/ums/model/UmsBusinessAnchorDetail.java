@@ -1,26 +1,19 @@
 package com.walk.mall.tiny.modules.ums.model;
+import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
 import lombok.Data;
-/**
- * <pre>
- *  作品表
- * </pre>
- * @author toolscat.com
- * @verison $Id: UmsBusinessWork v 0.1 2023-04-16 12:17:08
- */
 @Data
-@TableName("ums_business_work")
-public class UmsBusinessWork implements Serializable{
+@TableName("ums_business_anchor_detail")
+public class UmsBusinessAnchorDetail implements Serializable{
 
     /**
      * <pre>
-     * 作品
+     * 
      * </pre>
      */
     @TableId(type=IdType.AUTO)
@@ -31,65 +24,52 @@ public class UmsBusinessWork implements Serializable{
      * 主持人id
      * </pre>
      */
-    private Long	authorId;
+    private Long	anchorId;
 
     /**
      * <pre>
-     * 主持人名字
+     * 主持人真实姓名
      * </pre>
      */
-    private String	anthorName;
+    private String	anchorName;
 
     /**
      * <pre>
-     * 作品封面图片地址
+     * 主持人身高
      * </pre>
      */
-    private String	coverUrl;
+    private String	anchorHeight;
 
     /**
      * <pre>
-     * 作品标题
+     * 主持人体重
      * </pre>
      */
-    private String	title;
+    private String	anchorWeight;
 
     /**
      * <pre>
-     * 作品地点
+     * 主持人星座
      * </pre>
      */
-    private String	area;
+    private String	anchorConstellation;
 
     /**
      * <pre>
-     * 作品查看数量
-     * </pre>
-     */
-    private Integer	viewNumber;
-
-    /**
-     * <pre>
-     * 作品创建时间
+     * 入行时间
      * </pre>
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date    createdTime;
-
-
-    /**
-     * <pre>
-     * 类型
-     * </pre>
-     */
-    private int type;
+    private Date	entryTime;
 
     /**
      * <pre>
-     * 内容
+     * 主持人风格
      * </pre>
      */
-    private String content;
+    private String	anchorStytle;
+
+
 
 }

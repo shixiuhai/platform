@@ -61,6 +61,12 @@ public class UmsBusinessWorkcomment implements Serializable{
      */
     private String	userComment;
 
+    /**
+     * <pre>
+     * 作品类型
+     * </pre>
+     */
+    private String type;
 
 
 

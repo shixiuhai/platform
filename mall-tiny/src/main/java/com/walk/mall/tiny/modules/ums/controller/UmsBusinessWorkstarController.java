@@ -44,14 +44,24 @@ public class UmsBusinessWorkstarController {
 
     }
     
-    @DeleteMapping("")
-    public CommonResult delete(@RequestParam(value = "workId", required = true) Integer workId,
-                               @RequestParam(value = "userId", required = true) Integer userId){
+    // @DeleteMapping("")
+    // public CommonResult delete(@RequestParam(value = "workId", required = true) Integer workId,
+    //                            @RequestParam(value = "userId", required = true) Integer userId){
 
-        UmsBusinessWorkstar  umsBusinessWorkstar = new UmsBusinessWorkstar();
-        umsBusinessWorkstar.setWorkId(workId.longValue());
-        umsBusinessWorkstar.setUserId(userId.longValue());
-        boolean success = umsBusinessWorkstarService.removeStar(umsBusinessWorkstar);
+    //     UmsBusinessWorkstar  umsBusinessWorkstar = new UmsBusinessWorkstar();
+    //     umsBusinessWorkstar.setWorkId(workId.longValue());
+    //     umsBusinessWorkstar.setUserId(userId.longValue());
+    //     boolean success = umsBusinessWorkstarService.removeStar(umsBusinessWorkstar);
+    //     if(success){
+    //         return CommonResult.success(null, null);
+    //     }
+    //     return CommonResult.failed();
+    // }
+
+
+    @DeleteMapping("")
+    public CommonResult delete(@RequestParam(value = "id", required = true) Integer id){
+        boolean success = umsBusinessWorkstarService.removeById(id);
         if(success){
             return CommonResult.success(null, null);
         }

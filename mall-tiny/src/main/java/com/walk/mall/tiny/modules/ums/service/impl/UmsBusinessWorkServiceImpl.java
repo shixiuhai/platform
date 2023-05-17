@@ -22,29 +22,24 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
     @Autowired
     private UmsAdminService umsAdminService;
     @Override
-    public Page<UmsBusinessWork> list(String keyword, Integer id,Integer pageNum, Integer pageSize){
+    public Page<UmsBusinessWork> list(String keyword, Integer id,Integer pageNum, Integer pageSize, Integer type){
         Page<UmsBusinessWork> pages = new Page<>(pageNum,pageSize);
         QueryWrapper<UmsBusinessWork> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().orderByDesc(UmsBusinessWork::getCreatedTime);
+        queryWrapper.lambda().orderByDesc(UmsBusinessWork::getCreatedTime).eq(!Objects.isNull(type),UmsBusinessWork::getType,type);
         if(StrUtil.isNotEmpty(keyword)){
             queryWrapper.lambda().like(UmsBusinessWork::getAnthorName,keyword);
             queryWrapper.lambda().or().like(UmsBusinessWork::getTitle,keyword);
-
         }
+        
         if(!Objects.isNull(id)){
             queryWrapper.lambda().eq(UmsBusinessWork::getId,id);
             UmsBusinessWork umsBusinessWork = new UmsBusinessWork();
             umsBusinessWork = this.getById(id);
             umsBusinessWork.setViewNumber(this.getById(id).getViewNumber()+1);
             this.updateById(umsBusinessWork);
-            
-
         }
-        Page<UmsBusinessWork> b = this.page(pages,queryWrapper);
-        // b.getRecords().forEach(t->{
-        //     log.info("{}",t);
-        // });
-        return b;
+        Page<UmsBusinessWork> all = this.page(pages,queryWrapper);
+        return all;
     }
 
     public boolean saveWork(UmsBusinessWork umsBusinessWork){
@@ -56,10 +51,7 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
 
        }catch (Exception e){
             return false;
-
        }
-       
-        
     }
     
 }

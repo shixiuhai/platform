@@ -37,8 +37,9 @@ public class UmsBusinessWorkcommentController {
                 @RequestParam(value = "anchorId", required = false) Integer anchorId,
                 @RequestParam(value = "userId", required = false) Integer userId,
                 @RequestParam(value = "page", required = true, defaultValue = "1") Integer page,
-                @RequestParam(value = "size", required = true, defaultValue = "10") Integer size){
-        Page<UmsBusinessWorkcomment> all = umsBusinessWorkcommentService.list(workId, anchorId, userId, page, size);
+                @RequestParam(value = "size", required = true, defaultValue = "10") Integer size,
+                @RequestParam(value = "type", required = false) Integer type){
+        Page<UmsBusinessWorkcomment> all = umsBusinessWorkcommentService.list(workId, anchorId, userId, page, size, type);
         return CommonResult.success(CommonPage.restPage(all));
     
     }

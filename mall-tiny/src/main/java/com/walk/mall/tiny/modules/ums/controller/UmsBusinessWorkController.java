@@ -29,11 +29,10 @@ public class UmsBusinessWorkController {
     public CommonResult list(@RequestParam(value="keyWord",required = false) String keyWord,
                              @RequestParam(value="id",required = false) Integer id,
                              @RequestParam(value="pageNum",defaultValue = "1",required = false) Integer pageNum,
-                             @RequestParam(value="pageNum",defaultValue = "10",required = false) Integer pageSize){
-        Page<UmsBusinessWork> umsBusinessWorkList= umsBusinessWorkService.list(keyWord,id,pageNum,pageSize);
+                             @RequestParam(value="pageNum",defaultValue = "10",required = false) Integer pageSize,
+                             @RequestParam(value="type",required = false) Integer type){
+        Page<UmsBusinessWork> umsBusinessWorkList= umsBusinessWorkService.list(keyWord,id,pageNum,pageSize,type);
         return CommonResult.success(CommonPage.restPage(umsBusinessWorkList));
-
-
     }
 
     @PostMapping("")
@@ -50,7 +49,6 @@ public class UmsBusinessWorkController {
         boolean success = umsBusinessWorkService.removeById(id);
         if(success){
             return CommonResult.success(null, null);
-
         }
         return CommonResult.failed();
     }

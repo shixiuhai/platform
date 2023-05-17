@@ -21,6 +21,9 @@ public class LoginControl {
     @RequestMapping("")
     public CommonResult getToken(){
         String token = null;
+        String a="3";
+		Integer i=3;
+        String b = i.toString();
         token = umsAdminService.login("shixiuhai",password);
         log.info("{}",token);
         return CommonResult.success(token);

@@ -24,13 +24,14 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
     @Autowired
     private UmsAdminService umsAdminService;
     
-    public Page<UmsBusinessWorkcomment> list(Integer workId, Integer anchorId, Integer userId, Integer page, Integer size){
+    public Page<UmsBusinessWorkcomment> list(Integer workId, Integer anchorId, Integer userId, Integer page, Integer size, Integer type){
         Page<UmsBusinessWorkcomment> all = this.page(
             new Page<UmsBusinessWorkcomment>(page,size),
             new QueryWrapper<UmsBusinessWorkcomment>().lambda()
                 .eq(!Objects.isNull(workId),UmsBusinessWorkcomment::getWorkId,workId)
                 .eq(!Objects.isNull(anchorId),UmsBusinessWorkcomment::getAnchorId,anchorId)
                 .eq(!Objects.isNull(userId),UmsBusinessWorkcomment::getUserId,userId)
+                .eq(!Objects.isNull(type),UmsBusinessWorkcomment::getType,type)
         );
         return all;
 

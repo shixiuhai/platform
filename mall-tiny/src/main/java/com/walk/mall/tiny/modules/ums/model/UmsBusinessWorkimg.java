@@ -38,6 +38,13 @@ public class UmsBusinessWorkimg  implements Serializable{
      */
     private String	imgUrl;
 
+    /**
+     * <pre>
+     * 作品类型
+     * </pre>
+     */
+    private String type;
+
 
 
 

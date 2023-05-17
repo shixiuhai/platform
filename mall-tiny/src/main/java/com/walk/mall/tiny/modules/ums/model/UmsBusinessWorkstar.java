@@ -43,5 +43,12 @@ public class UmsBusinessWorkstar implements Serializable{
     private Long	userId;
     @TableField(exist=false)
     private String userName;
+
+    /**
+     * <pre>
+     * 作品类型
+     * </pre>
+     */
+    private String type;
     
 }

@@ -13,7 +13,7 @@ import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkimgService;
 
 @Service
 public class UmsBusinessWorkimgServiceImpl extends ServiceImpl<UmsBusinessWorkimgMapper,UmsBusinessWorkimg> implements UmsBusinessWorkimgService{
-    public Page<UmsBusinessWorkimg> list(Integer workId,Integer page,Integer size){
+    public Page<UmsBusinessWorkimg> list(Integer workId,Integer page,Integer size, Integer type){
         // Page<UmsBusinessWorkimg> pages = new Page<>(page,size);
         // QueryWrapper<UmsBusinessWorkimg> queryWrapper = new QueryWrapper<>();
         // if(!Objects.isNull(workId)){
@@ -23,7 +23,9 @@ public class UmsBusinessWorkimgServiceImpl extends ServiceImpl<UmsBusinessWorkim
         Page<UmsBusinessWorkimg> all = this.page(
             new Page<UmsBusinessWorkimg>(page,size),
             new QueryWrapper<UmsBusinessWorkimg>()
-            .lambda().eq(!Objects.isNull(workId),UmsBusinessWorkimg::getWorkId,workId)
+            .lambda()
+            .eq(!Objects.isNull(workId),UmsBusinessWorkimg::getWorkId,workId)
+            .eq(!Objects.isNull(type),UmsBusinessWorkimg::getType,type)
         );
         return all;
 
