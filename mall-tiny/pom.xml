@@ -26,6 +26,7 @@
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
         <velocity.version>2.3</velocity.version>
+        <fastjson.version>1.2.75</fastjson.version>
     </properties>
 
     <parent>
@@ -133,6 +134,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
+        </dependency>
+        <!-- jsonObject包 -->
+         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
 

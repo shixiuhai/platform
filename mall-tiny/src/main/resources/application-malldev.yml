@@ -59,6 +59,7 @@ secure:
       - /admin/register
       - /admin/info
       - /admin/logout
+      - /dictionary/**
 
 fileUpload:
   specifiedPath: C:/Users/15256/Desktop

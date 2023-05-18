@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.walk.mall.tiny.modules.ums.mapper.UmsDictionaryMapper">
+
+    <select id="findUmsDictionaryByDicKeyAndDicNameAndState" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+        SELECT * FROM ums_business_dictionary where dic_key = #{id} and dic_name = #{name} and state = #{state}
+    </select>
+
+    <select id="findUmsDictionaryByDicNameAndState" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+        SELECT * FROM ums_business_dictionary p where p.state = #{state} and dic_name = #{name} order by p.dic_id ASC
+    </select>
+
+    <select id="findUmsDictionaryByDicNameAndParentId" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+        SELECT * FROM ums_business_dictionary p where p.state = #{state} and dic_name = #{name} and dic_parent_id = #{parentId} order by p.dic_id ASC
+    </select>
+
+    <select id="findName" resultType="String">
+        SELECT DISTINCT p.dic_name FROM ums_business_dictionary p where p.state = 'A' and p.dic_parent_id != 0 and p.dic_parent_id != 1 order by p.dic_name ASC
+    </select>
+
+    <select id="findByDicParentIdAndState" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+         SELECT * FROM ums_business_dictionary where dic_parent_id = #{parentId} and state = #{state}
+    </select>
+
+    <select id="findByState" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+         SELECT * FROM ums_business_dictionary where state = #{state}
+    </select>
+    <select id="getValueByNameAndKey" resultType="String">
+         SELECT DISTINCT dic_value FROM ums_business_dictionary where dic_name = #{dicName} and dic_key=#{dicKey}
+    </select>
+    <select id="getByName" resultType="com.walk.mall.tiny.modules.ums.model.UmsDictionary">
+         SELECT * FROM ums_business_dictionary where dic_name = #{dicName}
+    </select>
+</mapper>
