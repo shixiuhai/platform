@@ -44,7 +44,8 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
 
     public boolean saveWork(UmsBusinessWork umsBusinessWork){
        try{
-            umsBusinessWork.setAnthorName(umsAdminService.getById(umsBusinessWork.getAuthorId()).getUsername());
+            // 这里的主持人人名称是用户表的nickName
+            umsBusinessWork.setAnthorName(umsAdminService.getById(umsBusinessWork.getAuthorId()).getNickName());
             umsBusinessWork.setCreatedTime(new Date());
             this.save(umsBusinessWork);
             return true;

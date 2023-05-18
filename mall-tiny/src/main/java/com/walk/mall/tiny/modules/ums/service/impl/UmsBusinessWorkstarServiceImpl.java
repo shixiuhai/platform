@@ -57,8 +57,8 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
                 .eq(!Objects.isNull(userId),UmsBusinessWorkstar::getUserId,userId)       
         );
         all.getRecords().forEach(t->{
-            t.setAnchorName(umsAdminService.getById(t.getAnchorId()).getUsername());
-            t.setUserName(umsAdminService.getById(t.getUserId()).getUsername());
+            t.setAnchorName(umsAdminService.getById(t.getAnchorId()).getNickName());
+            t.setUserName(umsAdminService.getById(t.getUserId()).getNickName());
             t.setWorkName(umsBusinessWorkService.getById(t.getWorkId()).getTitle());
         });
         return all;

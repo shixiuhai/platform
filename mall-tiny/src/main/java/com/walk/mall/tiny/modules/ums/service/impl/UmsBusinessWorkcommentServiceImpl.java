@@ -41,12 +41,12 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
     // 作品id(workId),用户id(userId),评论内容(user_comment)
     public boolean saveComment(UmsBusinessWorkcomment umsBusinessWorkcomment){
         try {
-            // 设置作者id
+            // 设置作品作者id
             umsBusinessWorkcomment.setAnchorId(umsBusinessWorkService.getById(umsBusinessWorkcomment.getWorkId()).getAuthorId());
-            // 设置作者名称
+            // 设置作品作者名称
             umsBusinessWorkcomment.setAnchorName(umsBusinessWorkService.getById(umsBusinessWorkcomment.getWorkId()).getAnthorName());
-            // 设置用户名
-            umsBusinessWorkcomment.setUserName(umsAdminService.getById(umsBusinessWorkcomment.getUserId()).getUsername());
+            // 设置作品评论用户名
+            umsBusinessWorkcomment.setUserName(umsAdminService.getById(umsBusinessWorkcomment.getUserId()).getNickName());
             // 保存
             this.save(umsBusinessWorkcomment);
             return true;

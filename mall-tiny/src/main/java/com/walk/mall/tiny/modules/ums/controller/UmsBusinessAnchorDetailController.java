@@ -25,7 +25,7 @@ public class UmsBusinessAnchorDetailController {
     
     @PostMapping("")
     public CommonResult saveUserDetail(@RequestBody UmsBusinessAnchorDetail umsBusinessAnchorDetail){
-        boolean success = umsBusinessAnchorDetailService.saveOrUpdate(umsBusinessAnchorDetail);
+        boolean success = umsBusinessAnchorDetailService.saveUserDetail(umsBusinessAnchorDetail);
         if(success){
             return CommonResult.success(null, null);
         }
