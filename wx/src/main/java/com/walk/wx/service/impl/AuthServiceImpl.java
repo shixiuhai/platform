@@ -10,11 +10,14 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import java.util.Map;
 import java.util.Objects;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import com.alibaba.fastjson.JSONObject;
+import com.walk.mall.tiny.security.util.JwtTokenUtil;
 import com.walk.wx.service.AuthService;
 import com.walk.wx.service.WxMiniApi;
 import com.walk.wx.service.impl.WxMiniApiImpl;
@@ -51,12 +54,17 @@ public class AuthServiceImpl implements AuthService {
     private String appId;
     @Value("${wxMini.secret}")
     private String secret;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
     
     @Autowired
     private UmsAdminService umsAdminService;
     
     @Autowired
     private WxMiniApi wxMiniApi;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
     
     public  Map<String,String> login(String jsCode, String encryptedData, String iv){
         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
@@ -90,19 +98,27 @@ public class AuthServiceImpl implements AuthService {
         
         // 用户存在直接登陆
         if(Objects.nonNull(umsAdmin)){
-            String token = umsAdminService.login(phoneNumber, password);
             // 添加信息到wxUser中
+            UserDetails userDetails = umsAdminService.loadUserByUsername(umsAdmin.getUsername());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtTokenUtil.generateToken(userDetails);
             wxUser.put("token", token);
+            wxUser.put("tokenHead", tokenHead);
         }
 
         // 用户不存在创建用户登陆
         UmsAdminParam umsAdminParam = new UmsAdminParam();
         umsAdminParam.setUsername(phoneNumber);
         umsAdminParam.setPassword(password);
-
         umsAdmin = umsAdminService.register(umsAdminParam);
-        String token = umsAdminService.login(umsAdmin.getUsername(),password);
+        UserDetails userDetails = umsAdminService.loadUserByUsername(umsAdmin.getUsername());
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtTokenUtil.generateToken(userDetails);
         wxUser.put("token", token);
+        wxUser.put("tokenHead", tokenHead);
+        
         // 返回微信登陆用户信息
         return wxUser;
         
@@ -114,5 +130,10 @@ public class AuthServiceImpl implements AuthService {
         // 4. 后端使用 `iv` + `encryptedData` + `sessionKey`可以解出手机号并脱敏返回给前端。 自此，手机号授权流程结束。
         
     }
+
+    
+   
+
+   
    
 }
