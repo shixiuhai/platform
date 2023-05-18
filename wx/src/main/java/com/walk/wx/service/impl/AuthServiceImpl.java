@@ -98,11 +98,9 @@ public class AuthServiceImpl implements AuthService {
         
         // 用户存在直接登陆
         if(Objects.nonNull(umsAdmin)){
+            // 获取用户token
+            String token = loginByUserName(umsAdmin.getUsername());
             // 添加信息到wxUser中
-            UserDetails userDetails = umsAdminService.loadUserByUsername(umsAdmin.getUsername());
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String token = jwtTokenUtil.generateToken(userDetails);
             wxUser.put("token", token);
             wxUser.put("tokenHead", tokenHead);
         }
@@ -112,10 +110,8 @@ public class AuthServiceImpl implements AuthService {
         umsAdminParam.setUsername(phoneNumber);
         umsAdminParam.setPassword(password);
         umsAdmin = umsAdminService.register(umsAdminParam);
-        UserDetails userDetails = umsAdminService.loadUserByUsername(umsAdmin.getUsername());
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtTokenUtil.generateToken(userDetails);
+        // 通过用户账号获取token
+        String token = loginByUserName(umsAdmin.getUsername());
         wxUser.put("token", token);
         wxUser.put("tokenHead", tokenHead);
         
@@ -129,6 +125,16 @@ public class AuthServiceImpl implements AuthService {
         // 3. 用户点击按钮拉起`获取手机号授权框`并确认授权后，将`iv`、`encryptedData`提交给后端
         // 4. 后端使用 `iv` + `encryptedData` + `sessionKey`可以解出手机号并脱敏返回给前端。 自此，手机号授权流程结束。
         
+    }
+
+    // 定义通过用户账号获取token
+    public String loginByUserName(String username){
+        UserDetails userDetails = umsAdminService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtTokenUtil.generateToken(userDetails);
+        return token;
+
     }
 
     
