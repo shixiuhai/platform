@@ -60,6 +60,7 @@ secure:
       - /admin/info
       - /admin/logout
       - /dictionary/**
+      - /wxLogin/**
 
 fileUpload:
   specifiedPath: C:/Users/15256/Desktop
