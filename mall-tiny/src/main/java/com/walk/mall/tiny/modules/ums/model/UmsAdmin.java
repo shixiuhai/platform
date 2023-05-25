@@ -35,8 +35,6 @@ public class UmsAdmin implements Serializable {
 
     private String phone;
 
-    private String openId;
-
     @ApiModelProperty(value = "头像")
     private String icon;
 
