@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 25/05/2023 18:33:50
+ Date: 17/06/2023 22:05:27
 */
 
 SET NAMES utf8mb4;
@@ -39,9 +39,9 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '管理员（username是账号,后面的userName是这里的nickName）', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
-INSERT INTO `ums_admin` VALUES (18, 'shixiuhai1', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海1', '这是一个什么什么样的主持人', '2023-04-15 13:48:13', '2023-05-17 22:36:11', 1);
-INSERT INTO `ums_admin` VALUES (19, 'shixiuhai', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海', 'string1', '2023-04-15 20:54:38', '2023-05-17 22:36:14', 1);
+INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '管理员（username是账号）', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
+INSERT INTO `ums_admin` VALUES (18, '15256728901', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海1', '这是一个什么什么样的主持人', '2023-04-15 13:48:13', '2023-05-17 22:36:11', 1);
+INSERT INTO `ums_admin` VALUES (19, '15256728902', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海', 'string1', '2023-04-15 20:54:38', '2023-05-17 22:36:14', 1);
 INSERT INTO `ums_admin` VALUES (20, 'xiaoming', '$2a$10$mIL3MGAFbiQqxz7zy/1xqe8ZjtwB9U3U/my.oFSVLvrVaRmkEUSkS', NULL, NULL, '15256728902@163.com', '哈哈', NULL, '2023-04-25 22:28:53', NULL, 1);
 INSERT INTO `ums_admin` VALUES (21, 'xiaoming2', '$2a$10$oc6TFOJAIdEcJsrTzJYaJOT1XDcW6rAdnC308J8/hoGQn0epAQ6qe', NULL, NULL, NULL, '小a', NULL, '2023-04-25 22:29:11', NULL, 1);
 INSERT INTO `ums_admin` VALUES (22, 'xiaoming3', '$2a$10$pRhj7lKlzi5eAFX59/owOeCQtMzd3iRc1s5NITullZfLYTD.gS16G', NULL, NULL, NULL, '嘿嘿', NULL, '2023-05-17 22:37:11', NULL, 1);
@@ -58,7 +58,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 326 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 328 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -104,6 +104,9 @@ INSERT INTO `ums_admin_login_log` VALUES (322, 19, '2023-05-17 22:45:38', '127.0
 INSERT INTO `ums_admin_login_log` VALUES (323, 3, '2023-05-18 23:14:24', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (324, 3, '2023-05-19 00:39:41', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (325, 3, '2023-05-19 00:39:44', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (326, 3, '2023-05-25 18:39:46', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (327, 3, '2023-06-17 20:17:23', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (328, 18, '2023-06-17 20:56:23', '127.0.0.1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -146,7 +149,7 @@ CREATE TABLE `ums_business_anchor_detail`  (
 -- Records of ums_business_anchor_detail
 -- ----------------------------
 INSERT INTO `ums_business_anchor_detail` VALUES (4, 35, '主持人真实姓名3', '升高175', '体重80', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (8, 4, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
+INSERT INTO `ums_business_anchor_detail` VALUES (8, 4, '主持人真实姓名', '升高175', '体重72', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
 INSERT INTO `ums_business_anchor_detail` VALUES (9, 5, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
 INSERT INTO `ums_business_anchor_detail` VALUES (10, 6, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
 INSERT INTO `ums_business_anchor_detail` VALUES (12, 10, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
@@ -172,7 +175,6 @@ CREATE TABLE `ums_business_company`  (
 -- Records of ums_business_company
 -- ----------------------------
 INSERT INTO `ums_business_company` VALUES (1, NULL, '婚礼团队2', '浙江金华', '我们是一个什么什么公司', '15245433', '12adbxxx12');
-INSERT INTO `ums_business_company` VALUES (3, NULL, '婚礼团队', '浙江金华', '我们是一个什么什么公司', '15245433', '2234354');
 
 -- ----------------------------
 -- Table structure for ums_business_dictionary
@@ -223,7 +225,7 @@ CREATE TABLE `ums_business_work`  (
 -- ----------------------------
 -- Records of ums_business_work
 -- ----------------------------
-INSERT INTO `ums_business_work` VALUES (1, 19, '小海', NULL, '测试作品名字', NULL, 15, '2023-05-18 22:49:12', 1, NULL);
+INSERT INTO `ums_business_work` VALUES (1, 19, '小海', NULL, '测试作品名字', NULL, 16, '2023-05-18 22:49:12', 1, NULL);
 INSERT INTO `ums_business_work` VALUES (2, 3, '管理员（这里的nickname是真实的主持人名称和用户名称前面的username是账号和后面接口查询出来的username无关）', '作品封面图片地址', '作品标题', '作品地点', 9, '2023-05-18 22:48:52', 2, NULL);
 INSERT INTO `ums_business_work` VALUES (3, 3, '管理员（这里的nickname是真实的主持人名称和用户名称前面的username是账号和后面接口查询出来的username无关）', '作品封面图片地址', '作品标题或者动态标题', '作品地点', 0, '2023-05-18 22:48:50', 1, '动态内容,当type为1时发表作品,type为2时设置content');
 
@@ -263,9 +265,10 @@ CREATE TABLE `ums_business_workimg`  (
 -- ----------------------------
 -- Records of ums_business_workimg
 -- ----------------------------
-INSERT INTO `ums_business_workimg` VALUES (1, 2, 'http://2.jpg', NULL);
-INSERT INTO `ums_business_workimg` VALUES (2, 2, 'http://22w.bai', NULL);
-INSERT INTO `ums_business_workimg` VALUES (3, 1, 'http://sdfa', NULL);
+INSERT INTO `ums_business_workimg` VALUES (1, 2, 'http://2.jpg', 1);
+INSERT INTO `ums_business_workimg` VALUES (2, 2, 'http://22w.bai', 2);
+INSERT INTO `ums_business_workimg` VALUES (3, 1, 'http://sdfa', 1);
+INSERT INTO `ums_business_workimg` VALUES (4, 1, '/abcd/1.png', 1);
 
 -- ----------------------------
 -- Table structure for ums_business_workreserve
@@ -312,7 +315,7 @@ INSERT INTO `ums_business_workstar` VALUES (1, 1, 19, 3, NULL);
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_business_workvideo`;
 CREATE TABLE `ums_business_workvideo`  (
-  `id` int(0) NOT NULL COMMENT '作品视频id',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '作品视频id',
   `work_id` int(0) NULL DEFAULT NULL COMMENT '作品id',
   `video_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '作品视频url',
   `type` int(0) NULL DEFAULT NULL COMMENT '作品类型，1婚礼作品，2主持人动态',
@@ -322,9 +325,7 @@ CREATE TABLE `ums_business_workvideo`  (
 -- ----------------------------
 -- Records of ums_business_workvideo
 -- ----------------------------
-INSERT INTO `ums_business_workvideo` VALUES (1, 3, 'htasdf', NULL);
-INSERT INTO `ums_business_workvideo` VALUES (2, 3, 'sdfasd', NULL);
-INSERT INTO `ums_business_workvideo` VALUES (3, 4, 'dsfas', NULL);
+INSERT INTO `ums_business_workvideo` VALUES (1, 1, '/abcd/1.mp4', 1);
 
 -- ----------------------------
 -- Table structure for ums_menu
@@ -416,9 +417,9 @@ CREATE TABLE `ums_role`  (
 -- ----------------------------
 -- Records of ums_role
 -- ----------------------------
-INSERT INTO `ums_role` VALUES (5, '超级管理员', '拥有所有查看和操作功能', 0, '2020-02-02 15:11:05', 1, 0);
-INSERT INTO `ums_role` VALUES (9, '普通用户', '微信用户登陆', 0, '2023-04-15 18:37:45', 1, 0);
-INSERT INTO `ums_role` VALUES (10, '主持人', '主持人用户', 0, '2023-04-16 09:02:11', 1, 0);
+INSERT INTO `ums_role` VALUES (5, '超级管理员', '拥有所有查看和操作功能(企业管理人员)', 0, '2020-02-02 15:11:05', 1, 0);
+INSERT INTO `ums_role` VALUES (9, '普通用户', '微信默认登陆用户', 0, '2023-04-15 18:37:45', 1, 0);
+INSERT INTO `ums_role` VALUES (10, '主持人', '主持人用户（管理员需要后台给微信登陆用户调角色）', 0, '2023-04-16 09:02:11', 1, 0);
 
 -- ----------------------------
 -- Table structure for ums_role_menu_relation

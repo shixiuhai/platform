@@ -9,25 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.common.api.CommonResult;
 import lombok.extern.slf4j.Slf4j;
+import com.walk.mall.tiny.security.util.SpringUtil;
 import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 @Slf4j
 @RestController
-@RequestMapping("/wechat")
-public class LoginControl {
-    @Autowired
-    private UmsAdminService umsAdminService;
-    @Value("${wxMini.wxUser.defaultPassword}")
-    private String password;
-    @RequestMapping("")
-    public CommonResult getToken(){
-        String token = null;
-        String a="3";
-		Integer i=3;
-        String b = i.toString();
-        token = umsAdminService.login("shixiuhai",password);
-        log.info("{}",token);
-        return CommonResult.success(token);
+@RequestMapping("/test")
+public class Test {
+    public CommonResult  test(){
+        return CommonResult.success(SpringUtil.getUser());
 
     }
-   
 }
+   
