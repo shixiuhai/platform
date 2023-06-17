@@ -9,8 +9,10 @@ spring:
     port: 6379 # Redis服务器连接端口
     password: # Redis服务器连接密码（默认为空）
     timeout: 3000ms # 连接超时时间（毫秒）
-  multipart: 
-    max-file-size: 200M # 最大上传文件支持
+  servlet:
+    multipart: 
+      max-file-size: 200MB # 最大上传文件支持 multipart支持大小
+      max-request-size: 200MB  	# 设置多个文件大小为100MB formdata允许大小
 
 logging:
   level:
@@ -28,7 +30,7 @@ mybatis-plus:
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
-  secret: mall-admin-secret #JWT加解密使用的密钥
+  secret: mall-admin-secret-jwt #JWT加解密使用的密钥
   expiration: 604800 #JWT的超期限时间(60*60*24*7)
   tokenHead: 'Bearer '  #JWT负载中拿到开头
 
@@ -57,3 +59,9 @@ secure:
       - /admin/register
       - /admin/info
       - /admin/logout
+      - /dictionary/**
+      - /wxLogin/**
+
+fileUpload:
+  specifiedPath: /home/static
+  sqlPath: /static
