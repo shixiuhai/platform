@@ -15,6 +15,7 @@ import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 @RestController
 @RequestMapping("/test")
 public class Test {
+    @GetMapping("")
     public CommonResult  test(){
         return CommonResult.success(SpringUtil.getUser());
 
