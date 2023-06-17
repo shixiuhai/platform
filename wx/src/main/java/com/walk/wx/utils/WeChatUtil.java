@@ -20,7 +20,6 @@ import javax.net.ssl.HttpsURLConnection;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import com.alibaba.fastjson.JSONObject;
-import com.walk.wx.dto.AuthUserDto;
 
 import cn.hutool.core.codec.Base64;
 import lombok.extern.slf4j.Slf4j;
