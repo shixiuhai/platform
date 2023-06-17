@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessWorkvideo;
 import com.walk.mall.tiny.modules.ums.service.UmsBusinessWorkvideoService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.walk.mall.tiny.common.api.CommonResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
