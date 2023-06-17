@@ -21,7 +21,7 @@ public class FileUploadUtil {
 		try {
 			//文件扩展名
 			String extName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-			String[] suffixSafe = {".jpg", ".png", ".jpeg", ".PNG","JPEG",".mp4",".flv",".m3u8"};
+			String[] suffixSafe = {".jpg", ".png", ".jpeg", ".PNG","JPEG","JPG",".mp4",".flv",".m3u8"};
 			boolean flag = false;
 			for (String s : suffixSafe) {
 				if (extName.toLowerCase().equals(s)) {
