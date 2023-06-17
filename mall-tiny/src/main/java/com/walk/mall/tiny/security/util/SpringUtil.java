@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
+import com.walk.mall.tiny.domain.AdminUserDetails;
+
 
 /**
  * Spring工具类
@@ -44,9 +46,14 @@ public class SpringUtil implements ApplicationContextAware {
         return getApplicationContext().getBean(name, clazz);
     }
 
-    // 获取用户信息
-    public static UmsAdmin getUser(){
-        return (UmsAdmin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    // 获取用户详细信息
+    public static AdminUserDetails getUserDetail(){
+        return (AdminUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    // 获取用户账号
+    public static String getUsername(){
+        return (String) getUserDetail().getUsername();
     }
 
 }

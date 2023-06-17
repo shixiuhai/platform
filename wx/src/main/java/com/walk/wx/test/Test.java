@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.common.api.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import com.walk.mall.tiny.security.util.SpringUtil;
+import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
 import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 @Slf4j
 @RestController
@@ -17,7 +18,9 @@ import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 public class Test {
     @GetMapping("")
     public CommonResult  test(){
-        return CommonResult.success(SpringUtil.getUser());
+        String umsAdmin = SpringUtil.getUsername();
+        // log.info(umsAdmin.toString());
+        return CommonResult.success(umsAdmin);
 
     }
 }
