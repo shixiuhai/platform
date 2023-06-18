@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -34,7 +35,9 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
                 new QueryWrapper<UmsBusinessWorkstar>()
                     .lambda()
                     .eq(!Objects.isNull(umsBusinessWorkstar.getUserId()),UmsBusinessWorkstar::getUserId,umsBusinessWorkstar.getUserId())
-                    .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId())       
+                    .eq(!Objects.isNull(umsBusinessWorkstar.getWorkId()),UmsBusinessWorkstar::getWorkId,umsBusinessWorkstar.getWorkId())
+                    .eq(!Objects.isNull(umsBusinessWorkstar.getType()),UmsBusinessWorkstar::getType,umsBusinessWorkstar.getType())
+                    .eq(!Objects.isNull(umsBusinessWorkstar.getCommentId()),UmsBusinessWorkstar::getCommentId,umsBusinessWorkstar.getCommentId())     
             );
             log.info("--------{}------",all.getRecords().toArray().length);
             if(all.getRecords().toArray().length>=1){
@@ -47,19 +50,24 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
         } 
     }
 
-    public Page<UmsBusinessWorkstar> list(Integer workId, Integer anchorId, Integer userId, Integer page, Integer size){
+    public Page<UmsBusinessWorkstar> list(Integer workId, Integer commentId, Integer anchorId, Integer userId, Integer type,Integer page, Integer size){
         Page<UmsBusinessWorkstar> all = this.page(
             new Page<UmsBusinessWorkstar>(page,size),
             new QueryWrapper<UmsBusinessWorkstar>()
                 .lambda()
                 .eq(!Objects.isNull(anchorId),UmsBusinessWorkstar::getAnchorId,anchorId)
-                .eq(!Objects.isNull(workId),UmsBusinessWorkstar::getWorkId,workId)       
-                .eq(!Objects.isNull(userId),UmsBusinessWorkstar::getUserId,userId)       
+                .eq(!Objects.isNull(workId),UmsBusinessWorkstar::getWorkId,workId)  
+                .eq(!Objects.isNull(commentId),UmsBusinessWorkstar::getCommentId,commentId)       
+                .eq(!Objects.isNull(userId),UmsBusinessWorkstar::getUserId,userId) 
+                .eq(!Objects.isNull(type),UmsBusinessWorkstar::getType,type)        
         );
         all.getRecords().forEach(t->{
-            t.setAnchorName(umsAdminService.getById(t.getAnchorId()).getNickName());
-            t.setUserName(umsAdminService.getById(t.getUserId()).getNickName());
-            t.setWorkName(umsBusinessWorkService.getById(t.getWorkId()).getTitle());
+            if(umsAdminService.getById(t.getAnchorId())!=null){
+                t.setAnchorName(umsAdminService.getById(t.getAnchorId()).getNickName());
+                t.setUserName(umsAdminService.getById(t.getUserId()).getNickName());
+                t.setWorkName(umsBusinessWorkService.getById(t.getWorkId()).getTitle());
+            }
+            
         });
         return all;
     }
@@ -81,5 +89,49 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
 
     }
      
+    public boolean isStar(Integer workId,Integer commentId,Integer userId, Integer type){
+        UmsBusinessWorkstar umsBusinessWorkstar = this.getOne(
+            new QueryWrapper<UmsBusinessWorkstar>()
+            .eq(Objects.nonNull(workId), "work_id", workId)
+            .eq(Objects.nonNull(userId),"user_id",userId)            
+            .eq(Objects.nonNull(userId),"type",type)
+            .eq(Objects.nonNull(commentId),"comment_id",commentId)
+
+        );
+        if(Objects.nonNull(umsBusinessWorkstar)){
+            return true;
+        }
+        return false;
+            
+    }
+
+    // 只有作品和动态有收藏
+    public boolean isCollect(Integer workId,Integer userId, Integer type){
+        UmsBusinessWorkstar umsBusinessWorkstar = this.getOne(
+            new QueryWrapper<UmsBusinessWorkstar>()
+            .eq(Objects.nonNull(workId), "work_id", workId)
+            .eq(Objects.nonNull(userId),"user_id",userId)            
+            .eq(Objects.nonNull(userId),"type",type)
+        );
+        if(Objects.nonNull(umsBusinessWorkstar)){
+            return true;
+        }
+        
+        return false;
+
+    }
+
+    public Long StarNumber(Integer workId,Integer commentId,Integer type){
+        Long countNumber = this.count(
+            new QueryWrapper<UmsBusinessWorkstar>()
+            .eq(Objects.nonNull(workId), "work_id", workId)
+            .eq(Objects.nonNull(workId), "type", type)
+            .eq(Objects.nonNull(commentId), "comment_id", commentId)
+
+        );
+        return countNumber;
+
+    }
+
     
 }

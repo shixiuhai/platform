@@ -34,12 +34,14 @@ public class UmsBusinessWorkstarController {
     @GetMapping("")
     // (Integer workId, Integer anchorId, Integer userId, Integer page, Integer size)
     public CommonResult list(@RequestParam(value = "workId", required = false) Integer workId,
+                             @RequestParam(value = "commentId", required = false) Integer commentId,
                              @RequestParam(value = "anchorId", required = false) Integer anchorId,
                              @RequestParam(value = "userId", required = false) Integer userId,
+                             @RequestParam(value = "type", required = false) Integer type,
                              @RequestParam(value = "page", required = true, defaultValue = "1") Integer page,
                              @RequestParam(value = "size", required = true, defaultValue = "10") Integer size){
         
-        Page<UmsBusinessWorkstar> all = umsBusinessWorkstarService.list(workId, anchorId, userId, page, size);
+        Page<UmsBusinessWorkstar> all = umsBusinessWorkstarService.list(workId, commentId, anchorId, userId, type, page, size);
         return CommonResult.success(CommonPage.restPage(all), null);
 
     }

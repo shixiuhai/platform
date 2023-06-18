@@ -18,7 +18,10 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
 
     @Override
     public boolean saveUserDetail(UmsBusinessAnchorDetail umsBusinessAnchorDetail){
-        umsBusinessAnchorDetail.setAnchorName(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId()).getNickName());
+        if(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId())!=null){
+            umsBusinessAnchorDetail.setAnchorName(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId()).getNickName());
+        }
+        
         this.saveOrUpdate(umsBusinessAnchorDetail);
         return true;
     }
@@ -30,6 +33,12 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
                 .lambda()
                 .eq(!Objects.isNull(id),UmsBusinessAnchorDetail::getAnchorId,id)
         );
+        // 设置头像地址
+        all.getRecords().forEach(t->{
+           if(umsAdminService.getById(t.getAnchorId())!=null){
+                t.setIcon(umsAdminService.getById(t.getAnchorId()).getIcon());
+           }
+        });
         return all;
     }
     

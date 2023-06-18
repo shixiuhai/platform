@@ -4,8 +4,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 @Data
 @TableName("ums_business_workcomment")
@@ -18,6 +21,9 @@ public class UmsBusinessWorkcomment implements Serializable{
      */
     @TableId(type=IdType.AUTO)
     private Long	id;
+
+    // 父级评论id
+    private Long parentId;
 
     /**
      * <pre>
@@ -66,7 +72,29 @@ public class UmsBusinessWorkcomment implements Serializable{
      * 作品类型
      * </pre>
      */
-    private String type;
+    private Integer type;
+
+    // 发表评论时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date    createdTime;
+
+    // 发表评论人的头像
+    @TableField(exist=false)
+    private String icon;
+
+    @TableField(exist=false)
+    private List<UmsBusinessWorkcomment> children;
+
+    // 当前用户是否点赞该作品
+    @TableField(exist=false)
+    private boolean isStar;
+    // 当前作品的点赞量
+    @TableField(exist=false)
+    private Long StarNumber;
+
+
+    
 
 
 

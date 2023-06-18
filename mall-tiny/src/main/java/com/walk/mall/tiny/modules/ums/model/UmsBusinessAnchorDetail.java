@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
 import lombok.Data;
@@ -69,6 +70,10 @@ public class UmsBusinessAnchorDetail implements Serializable{
      * </pre>
      */
     private String	anchorStytle;
+
+    // 主持人头像
+    @TableField(exist=false)
+    private String icon;
 
 
 

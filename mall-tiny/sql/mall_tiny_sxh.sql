@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 17/06/2023 22:05:27
+ Date: 18/06/2023 16:09:05
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,7 @@ CREATE TABLE `ums_admin`  (
 -- Records of ums_admin
 -- ----------------------------
 INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '管理员（username是账号）', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
-INSERT INTO `ums_admin` VALUES (18, '15256728901', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海1', '这是一个什么什么样的主持人', '2023-04-15 13:48:13', '2023-05-17 22:36:11', 1);
+INSERT INTO `ums_admin` VALUES (18, '15256728901', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, '', '15256728901@163.com', '小海1', '这是一个什么什么样的主持人', '2023-04-15 13:48:13', '2023-05-17 22:36:11', 1);
 INSERT INTO `ums_admin` VALUES (19, '15256728902', '$2a$10$5v88Pqly1RxR03rFd09pTObQ6/OHn3rQzoC/f8UEkEkdE5BVBabPq', NULL, 'string', '15256728901@163.com', '小海', 'string1', '2023-04-15 20:54:38', '2023-05-17 22:36:14', 1);
 INSERT INTO `ums_admin` VALUES (20, 'xiaoming', '$2a$10$mIL3MGAFbiQqxz7zy/1xqe8ZjtwB9U3U/my.oFSVLvrVaRmkEUSkS', NULL, NULL, '15256728902@163.com', '哈哈', NULL, '2023-04-25 22:28:53', NULL, 1);
 INSERT INTO `ums_admin` VALUES (21, 'xiaoming2', '$2a$10$oc6TFOJAIdEcJsrTzJYaJOT1XDcW6rAdnC308J8/hoGQn0epAQ6qe', NULL, NULL, NULL, '小a', NULL, '2023-04-25 22:29:11', NULL, 1);
@@ -107,6 +107,9 @@ INSERT INTO `ums_admin_login_log` VALUES (325, 3, '2023-05-19 00:39:44', '127.0.
 INSERT INTO `ums_admin_login_log` VALUES (326, 3, '2023-05-25 18:39:46', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (327, 3, '2023-06-17 20:17:23', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (328, 18, '2023-06-17 20:56:23', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (329, 3, '2023-06-18 09:50:29', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (330, 3, '2023-06-18 09:51:19', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (331, 3, '2023-06-18 09:51:36', '127.0.0.1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -148,13 +151,7 @@ CREATE TABLE `ums_business_anchor_detail`  (
 -- ----------------------------
 -- Records of ums_business_anchor_detail
 -- ----------------------------
-INSERT INTO `ums_business_anchor_detail` VALUES (4, 35, '主持人真实姓名3', '升高175', '体重80', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
 INSERT INTO `ums_business_anchor_detail` VALUES (8, 4, '主持人真实姓名', '升高175', '体重72', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (9, 5, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (10, 6, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (12, 10, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (15, 11, '主持人真实姓名', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
-INSERT INTO `ums_business_anchor_detail` VALUES (17, 18, '小海1', '升高175', '体重70', '主持人星座', '2023-05-17 18:55:30', '主持人风格');
 
 -- ----------------------------
 -- Table structure for ums_business_company
@@ -168,13 +165,15 @@ CREATE TABLE `ums_business_company`  (
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司或者团队补充描述',
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司或团队联系电话',
   `wechat_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司或者团队微信号码',
+  `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司图片',
+  `video_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '公司视频',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '公司简介描述' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_company
 -- ----------------------------
-INSERT INTO `ums_business_company` VALUES (1, NULL, '婚礼团队2', '浙江金华', '我们是一个什么什么公司', '15245433', '12adbxxx12');
+INSERT INTO `ums_business_company` VALUES (1, NULL, '婚礼团队2', '浙江金华', '我们是一个什么什么公司', '15245433', '12adbxxx12', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_business_dictionary
@@ -225,8 +224,8 @@ CREATE TABLE `ums_business_work`  (
 -- ----------------------------
 -- Records of ums_business_work
 -- ----------------------------
-INSERT INTO `ums_business_work` VALUES (1, 19, '小海', NULL, '测试作品名字', NULL, 16, '2023-05-18 22:49:12', 1, NULL);
-INSERT INTO `ums_business_work` VALUES (2, 3, '管理员（这里的nickname是真实的主持人名称和用户名称前面的username是账号和后面接口查询出来的username无关）', '作品封面图片地址', '作品标题', '作品地点', 9, '2023-05-18 22:48:52', 2, NULL);
+INSERT INTO `ums_business_work` VALUES (1, 19, '小海', NULL, '测试作品名字', NULL, 31, '2023-05-18 22:49:12', 1, NULL);
+INSERT INTO `ums_business_work` VALUES (2, 3, '管理员（这里的nickname是真实的主持人名称和用户名称前面的username是账号和后面接口查询出来的username无关）', '作品封面图片地址', '作品标题', '作品地点', 9, '2023-06-18 15:50:48', 1, NULL);
 INSERT INTO `ums_business_work` VALUES (3, 3, '管理员（这里的nickname是真实的主持人名称和用户名称前面的username是账号和后面接口查询出来的username无关）', '作品封面图片地址', '作品标题或者动态标题', '作品地点', 0, '2023-05-18 22:48:50', 1, '动态内容,当type为1时发表作品,type为2时设置content');
 
 -- ----------------------------
@@ -242,13 +241,18 @@ CREATE TABLE `ums_business_workcomment`  (
   `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '用户名称',
   `user_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '用户评论',
   `type` int(0) NULL DEFAULT NULL COMMENT '作品类型，1婚礼作品，2主持人动态',
+  `parent_id` bigint(0) NULL DEFAULT NULL COMMENT '父评论id',
+  `created_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建评论的时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workcomment
 -- ----------------------------
-INSERT INTO `ums_business_workcomment` VALUES (3, 1, 19, '小海', 18, '小海1', '这是个测试评论，嘿嘿', 1);
+INSERT INTO `ums_business_workcomment` VALUES (4, 1, 20, '小海', 3, '小海2', '这是个测试评论，嘿嘿', 1, NULL, '2023-06-18 12:23:28');
+INSERT INTO `ums_business_workcomment` VALUES (8, 1, 19, '小海', 18, '小海1', '这是个测试评论，嘿嘿', 1, NULL, '2023-06-18 14:04:12');
+INSERT INTO `ums_business_workcomment` VALUES (9, 1, 19, '小海', 3, '管理员（username是账号）', '这是留言评论', 1, 4, '2023-06-18 14:24:48');
+INSERT INTO `ums_business_workcomment` VALUES (10, 1, 19, '小海', 3, '管理员（username是账号）', '继续回复留言', 1, 4, '2023-06-18 14:22:12');
 
 -- ----------------------------
 -- Table structure for ums_business_workimg
@@ -301,14 +305,20 @@ CREATE TABLE `ums_business_workstar`  (
   `work_id` bigint(0) NULL DEFAULT NULL COMMENT '作品id',
   `anchor_id` bigint(0) NULL DEFAULT NULL COMMENT '作品主持人id',
   `user_id` bigint(0) NULL DEFAULT NULL COMMENT '关注作品的用户id',
-  `type` int(0) NULL DEFAULT NULL COMMENT '作品类型，1婚礼作品，2主持人动态',
+  `type` int(0) NULL DEFAULT NULL COMMENT '1婚礼作品点赞，2主持人动态点赞，3.婚礼作品评论点赞, 4 主持人动态评论点赞, 5婚礼作品收藏,6主持人动态收藏',
+  `comment_id` int(0) NULL DEFAULT NULL COMMENT '评论id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '点赞收藏表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workstar
 -- ----------------------------
-INSERT INTO `ums_business_workstar` VALUES (1, 1, 19, 3, NULL);
+INSERT INTO `ums_business_workstar` VALUES (1, 1, 19, 21, 1, NULL);
+INSERT INTO `ums_business_workstar` VALUES (10, 1, 19, 3, 3, 4);
+INSERT INTO `ums_business_workstar` VALUES (11, 1, 19, 18, 2, NULL);
+INSERT INTO `ums_business_workstar` VALUES (15, 1, 19, 20, 3, 4);
+INSERT INTO `ums_business_workstar` VALUES (16, 1, 19, 20, 3, 8);
+INSERT INTO `ums_business_workstar` VALUES (17, 1, 19, 3, 3, 9);
 
 -- ----------------------------
 -- Table structure for ums_business_workvideo

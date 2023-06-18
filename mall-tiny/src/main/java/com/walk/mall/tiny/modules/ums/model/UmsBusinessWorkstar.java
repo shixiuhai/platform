@@ -49,6 +49,9 @@ public class UmsBusinessWorkstar implements Serializable{
      * 作品类型
      * </pre>
      */
-    private String type;
+    private Integer type;
+
+    // 评论id
+    private Integer commentId;
     
 }

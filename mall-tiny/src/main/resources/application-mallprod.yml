@@ -36,11 +36,15 @@ jwt:
 
 redis:
   database: mall
+  host: 127.0.0.1
+  port: 6379
+  password: sxh.200008
   key:
     admin: 'ums:admin'
     resourceList: 'ums:resourceList'
   expire:
     common: 86400 # 24小时
+  
 
 secure:
   ignored:

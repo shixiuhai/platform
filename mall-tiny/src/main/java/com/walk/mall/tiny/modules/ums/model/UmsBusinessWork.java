@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
 import lombok.Data;
@@ -91,5 +92,22 @@ public class UmsBusinessWork implements Serializable{
      * </pre>
      */
     private String content;
+
+    // 当前用户是否点赞该作品
+    @TableField(exist=false)
+    private boolean isStar;
+    
+    // 当前作品的点赞量
+    @TableField(exist=false)
+    private Long StarNumber;
+    
+    // 当前用户是否收藏该作品
+    @TableField(exist=false)
+    private boolean isCollect;
+
+    @TableField(exist=false)
+    private String icon;
+
+    
 
 }

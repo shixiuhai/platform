@@ -71,6 +71,12 @@ public class UmsBusinessCompany implements Serializable{
      */
     private String	wechatNumber;
 
+    // 公司图片
+    private String imgUrl;
+
+    // 公司视频
+    private String videoUrl;
+
 
 
 
