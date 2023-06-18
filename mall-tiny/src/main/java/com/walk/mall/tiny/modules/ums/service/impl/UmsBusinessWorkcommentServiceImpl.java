@@ -44,6 +44,7 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
                 // 一级评论没有parent_id
                 .isNull(Objects.isNull(id),UmsBusinessWorkcomment::getParentId)
         );
+        Long nowUserId = SpringUtil.getUserId();
         
         // 添加评论人头像
         all.getRecords().forEach(t->{
@@ -66,7 +67,7 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
                     // 默认设置评论点赞数量为0
                     c.setStarNumber(0L);
                     if(type==1||type==2){
-                        if(umsBusinessWorkstarService.isStar(c.getWorkId().intValue(),c.getId().intValue(),c.getUserId().intValue(), c.getType()+2)){
+                        if(umsBusinessWorkstarService.isStar(c.getWorkId().intValue(),c.getId().intValue(),nowUserId.intValue(), c.getType()+2)){
                             c.setStar(true);
                         }
                     
@@ -84,7 +85,7 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
             // 默认设置评论点赞数量为0
             t.setStarNumber(0L);
             if(type==1||type==2){
-                if(umsBusinessWorkstarService.isStar(t.getWorkId().intValue(),t.getId().intValue(),t.getUserId().intValue(), t.getType()+2)){
+                if(umsBusinessWorkstarService.isStar(t.getWorkId().intValue(),t.getId().intValue(),nowUserId.intValue(), t.getType()+2)){
                     t.setStar(true);
                 }
             
