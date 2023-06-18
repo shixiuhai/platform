@@ -64,4 +64,4 @@ secure:
 
 fileUpload:
   specifiedPath: /home/static/file
-  sqlPath: /file
+  sqlPath: /static/file
