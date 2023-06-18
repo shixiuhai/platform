@@ -2,6 +2,8 @@ package com.walk.mall.tiny.modules.ums.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
@@ -55,6 +57,9 @@ public class UmsAdmin implements Serializable {
 
     @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
     private Integer status;
+
+    @TableField(exist = false)
+    private String roleName;
 
 
 }

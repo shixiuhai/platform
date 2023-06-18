@@ -60,6 +60,8 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper,UmsAdmin> im
     @Autowired
     private UmsResourceMapper resourceMapper;
 
+    
+
     @Override
     public UmsAdmin getAdminByUsername(String username) {
         UmsAdmin admin = getCacheService().getAdmin(username);
@@ -159,7 +161,15 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper,UmsAdmin> im
             lambda.like(UmsAdmin::getUsername,keyword);
             lambda.or().like(UmsAdmin::getNickName,keyword);
         }
-        return page(page,wrapper);
+        page = this.page(page,wrapper);
+        page.getRecords().forEach(t->{
+            try {
+                t.setRoleName(this.getRoleList(t.getId()).get(0).getName());
+            } catch (Exception e) {
+                t.setRoleName("用户没有绑定角色");
+            }
+        });
+        return page;
     }
 
     @Override
