@@ -65,3 +65,4 @@ secure:
 fileUpload:
   specifiedPath: /home/static/file
   sqlPath: /static/file
+  deleteSpecifiedPat: /home
