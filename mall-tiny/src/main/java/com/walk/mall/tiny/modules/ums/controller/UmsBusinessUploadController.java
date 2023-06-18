@@ -28,6 +28,8 @@ public class  UmsBusinessUploadController {
     private String specifiedPath;
     @Value("${fileUpload.sqlPath}")
     private String sqlPath;
+    @Value("${fileUpload.deleteSpecifiedPat}")
+    private String deleteSpecifiedPat;
     @PostMapping("")
     public CommonResult upload(@RequestParam MultipartFile fileName) throws IOException {
         String path = FileUploadUtil.upload(fileName, specifiedPath, sqlPath);
@@ -40,7 +42,7 @@ public class  UmsBusinessUploadController {
     
     @DeleteMapping("")
     public CommonResult deleteFile(@RequestParam(value="fileName",required = true) String fileName){
-        boolean success = FileUploadUtil.deleteFile(specifiedPath, fileName);
+        boolean success = FileUploadUtil.deleteFile(deleteSpecifiedPat, fileName);
         if(success){
             return CommonResult.success("文件删除成功", fileName);
         }
