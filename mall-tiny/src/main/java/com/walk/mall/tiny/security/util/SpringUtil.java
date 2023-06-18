@@ -2,11 +2,16 @@ package com.walk.mall.tiny.security.util;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.druid.util.StringUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.walk.mall.tiny.domain.AdminUserDetails;
+import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
+import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 
 
 /**
@@ -17,6 +22,8 @@ import com.walk.mall.tiny.domain.AdminUserDetails;
 public class SpringUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
+    
+ 
 
     // 获取applicationContext
     public static ApplicationContext getApplicationContext() {
@@ -52,7 +59,26 @@ public class SpringUtil implements ApplicationContextAware {
 
     // 获取用户账号
     public static String getUsername(){
-        return (String) getUserDetail().getUsername();
+        try {
+            return  getUserDetail().getUsername();
+        } catch (Exception e) {
+            return null;
+        }
     }
+
+    // 获取用户id
+    public static Long getUserId(){
+        String username = getUsername();
+        if(StringUtils.isEmpty(username)){
+            return null; //或者抛出异常
+        }
+        UmsAdminService adminService = getBean(UmsAdminService.class);
+        UmsAdmin admin = adminService.getOne(
+            new QueryWrapper<UmsAdmin>()
+            .eq("username",username));
+        return admin == null ? null : admin.getId();        
+    }
+
+    
 
 }
