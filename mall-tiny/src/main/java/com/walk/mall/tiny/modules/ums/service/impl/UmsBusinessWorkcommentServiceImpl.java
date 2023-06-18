@@ -41,9 +41,8 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
                 .eq(!Objects.isNull(userId),UmsBusinessWorkcomment::getUserId,userId)
                 .eq(!Objects.isNull(type),UmsBusinessWorkcomment::getType,type)
                 .eq(!Objects.isNull(id),UmsBusinessWorkcomment::getId,id)
-
                 // 一级评论没有parent_id
-                .isNull(UmsBusinessWorkcomment::getParentId)
+                .isNull(Objects.isNull(id),UmsBusinessWorkcomment::getParentId)
         );
         
         // 添加评论人头像
