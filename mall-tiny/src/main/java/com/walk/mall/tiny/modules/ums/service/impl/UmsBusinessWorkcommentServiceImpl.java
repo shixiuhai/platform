@@ -32,7 +32,7 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
     @Autowired
     private UmsBusinessWorkstarService umsBusinessWorkstarService;
     
-    public Page<UmsBusinessWorkcomment> list(Integer workId, Integer anchorId, Integer userId, Integer page, Integer size, Integer type){
+    public Page<UmsBusinessWorkcomment> list(Integer workId, Integer anchorId, Integer userId, Integer id,Integer page, Integer size, Integer type){
         Page<UmsBusinessWorkcomment> all = this.page(
             new Page<UmsBusinessWorkcomment>(page,size),
             new QueryWrapper<UmsBusinessWorkcomment>().lambda()
@@ -40,6 +40,8 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
                 .eq(!Objects.isNull(anchorId),UmsBusinessWorkcomment::getAnchorId,anchorId)
                 .eq(!Objects.isNull(userId),UmsBusinessWorkcomment::getUserId,userId)
                 .eq(!Objects.isNull(type),UmsBusinessWorkcomment::getType,type)
+                .eq(!Objects.isNull(id),UmsBusinessWorkcomment::getId,id)
+
                 // 一级评论没有parent_id
                 .isNull(UmsBusinessWorkcomment::getParentId)
         );

@@ -40,10 +40,11 @@ public class UmsBusinessWorkcommentController {
     public  CommonResult list(@RequestParam(value="workdId",required = false) Integer workId,
                 @RequestParam(value = "anchorId", required = false) Integer anchorId,
                 @RequestParam(value = "userId", required = false) Integer userId,
+                @RequestParam(value = "id", required = false) Integer id,
                 @RequestParam(value = "page", required = true, defaultValue = "1") Integer page,
                 @RequestParam(value = "size", required = true, defaultValue = "10") Integer size,
                 @RequestParam(value = "type", required = false) Integer type){
-        Page<UmsBusinessWorkcomment> all = umsBusinessWorkcommentService.list(workId, anchorId, userId, page, size, type);
+        Page<UmsBusinessWorkcomment> all = umsBusinessWorkcommentService.list(workId, anchorId, userId, id, page, size, type);
         return CommonResult.success(CommonPage.restPage(all));
     }
 
