@@ -63,5 +63,5 @@ secure:
       - /wxLogin/**
 
 fileUpload:
-  specifiedPath: /home/static
-  sqlPath: /static
+  specifiedPath: /home/static/file
+  sqlPath: /file
