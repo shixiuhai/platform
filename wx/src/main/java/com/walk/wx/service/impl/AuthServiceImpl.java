@@ -66,6 +66,57 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    public Map<String,String> jsCodeLogin(String jsCode,String nickName,String icon){
+        JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
+        if(jsonObject == null) {
+            throw new RuntimeException("调用微信端授权认证接口错误");
+        }
+        String openId = jsonObject.getString("openid");
+        if(openId==null){
+            throw new RuntimeException("调用微信端授权认证接口错误");
+        }
+        // 在数据库查询是否存在用户
+        UmsAdmin  umsAdmin = umsAdminService.getOne(new LambdaQueryWrapper<UmsAdmin>()
+            .eq(!StringUtils.isEmpty(openId),UmsAdmin::getUsername , openId));
+
+        Map<String,String> wxUser = new HashMap<>();
+        // 用户存在直接登陆
+        if(Objects.nonNull(umsAdmin)){
+            // 获取用户token
+            String token = loginByUserName(umsAdmin.getUsername());
+            // 添加信息到wxUser中
+            wxUser.put("token", token);
+            wxUser.put("tokenHead", tokenHead);
+        }
+
+        // 用户不存在创建用户登陆
+        UmsAdminParam umsAdminParam = new UmsAdminParam();
+        umsAdminParam.setUsername(openId);
+        umsAdminParam.setPassword(password);
+        umsAdminParam.setNickName(nickName);
+        umsAdmin.setIcon(icon);
+        if(StringUtils.isBlank(nickName)){
+            // 如果nickName为空就设置为openId
+            umsAdminParam.setNickName(openId);
+
+        }
+        if(StringUtils.isBlank(icon)){
+            umsAdminParam.setIcon("http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg");
+        }
+        
+        umsAdmin = umsAdminService.register(umsAdminParam);
+        // 通过用户账号获取token
+        String token = loginByUserName(umsAdmin.getUsername());
+        wxUser.put("token", token);
+        wxUser.put("tokenHead", tokenHead);
+        
+        // 返回微信登陆用户信息
+        return wxUser;
+
+
+        
+    }
     
     public  Map<String,String> login(String jsCode, String encryptedData, String iv){
         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
@@ -128,6 +179,8 @@ public class AuthServiceImpl implements AuthService {
         
     }
 
+    
+    
     // 定义通过用户账号获取token
     public String loginByUserName(String username){
         UserDetails userDetails = umsAdminService.loadUserByUsername(username);

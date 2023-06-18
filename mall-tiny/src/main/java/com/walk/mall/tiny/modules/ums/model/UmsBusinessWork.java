@@ -93,6 +93,10 @@ public class UmsBusinessWork implements Serializable{
      */
     private String content;
 
+    private String imgUrl;
+
+    private String videoUrl;
+
     // 当前用户是否点赞该作品
     @TableField(exist=false)
     private boolean isStar;

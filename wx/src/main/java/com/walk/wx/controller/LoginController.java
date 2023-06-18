@@ -30,5 +30,14 @@ public class LoginController {
         return CommonResult.success(all, null);
 
     }
+
+    @RequestMapping("/jsCode")// (String jsCode, String encryptedData, String iv)
+    public CommonResult getTokenByjsCode(@RequestParam(value = "jsCode", required = true) String jsCode,
+                                         @RequestParam(value = "nickName", required = false) String nickName,
+                                         @RequestParam(value = "icon", required = false) String icon){
+        Map<String,String> all = authService.jsCodeLogin(jsCode,nickName,icon);
+        return CommonResult.success(all, null);
+
+    }
     
 }
