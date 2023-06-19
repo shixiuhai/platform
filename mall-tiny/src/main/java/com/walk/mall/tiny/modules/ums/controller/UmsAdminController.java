@@ -96,7 +96,6 @@ public class UmsAdminController {
         String username = principal.getName();
         UmsAdmin umsAdmin = adminService.getAdminByUsername(username);
         Map<String, Object> data = new HashMap<>();
-        umsAdmin.setRoleName(adminService.getRoleList(umsAdmin.getId()).get(0).getName());
         data.put("username", umsAdmin.getUsername());
         data.put("id", umsAdmin.getId());
         data.put("menus", roleService.getMenuList(umsAdmin.getId()));
@@ -105,6 +104,7 @@ public class UmsAdminController {
         if(CollUtil.isNotEmpty(roleList)){
             List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
             data.put("roles",roles);
+            umsAdmin.setRoleName(adminService.getRoleList(umsAdmin.getId()).get(0).getName());
             umsAdmin.setRoles(roles);
         }
         data.put("user",umsAdmin);
