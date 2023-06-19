@@ -117,7 +117,10 @@ public class AuthServiceImpl implements AuthService {
         String token = loginByUserName(umsAdmin.getUsername());
         wxUser.put("token", token);
         wxUser.put("tokenHead", tokenHead);
-        
+        // 默认用户创建为普通用户角色
+        List<Long> roleIds = new ArrayList<>();
+        roleIds.add(9L);
+        umsAdminService.updateRole(umsAdmin.getId(),roleIds);
         // 返回微信登陆用户信息
         return wxUser;
 
