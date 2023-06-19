@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import com.walk.mall.tiny.security.util.SpringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -95,17 +96,18 @@ public class UmsAdminController {
         String username = principal.getName();
         UmsAdmin umsAdmin = adminService.getAdminByUsername(username);
         Map<String, Object> data = new HashMap<>();
+        umsAdmin.setRoleName(adminService.getRoleList(umsAdmin.getId()).get(0).getName());
         data.put("username", umsAdmin.getUsername());
         data.put("id", umsAdmin.getId());
         data.put("menus", roleService.getMenuList(umsAdmin.getId()));
-        data.put("icon", umsAdmin.getIcon());
-        data.put("nickName",umsAdmin.getNickName());
-        data.put("phone",umsAdmin.getPhone());
         List<UmsRole> roleList = adminService.getRoleList(umsAdmin.getId());
+       
         if(CollUtil.isNotEmpty(roleList)){
             List<String> roles = roleList.stream().map(UmsRole::getName).collect(Collectors.toList());
             data.put("roles",roles);
+            umsAdmin.setRoles(roles);
         }
+        data.put("user",umsAdmin);
         return CommonResult.success(data);
     }
 
@@ -138,7 +140,30 @@ public class UmsAdminController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id, @RequestBody UmsAdmin admin) {
+        if(admin.getRoleName()!=null){
+            admin.setRoleName(null);
+        }
+        if(admin.getRoles()!=null){
+            admin.setRoles(null);
+        }
         boolean success = adminService.update(id, admin);
+        if (success) {
+            return CommonResult.success(null);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("用户更新自己信息")
+    @RequestMapping(value = "/update/myself", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updatemyself(@RequestBody UmsAdmin admin) {
+         if(admin.getRoleName()!=null){
+            admin.setRoleName(null);
+        }
+        if(admin.getRoles()!=null){
+            admin.setRoles(null);
+        }
+        boolean success = adminService.update(SpringUtil.getUserId(), admin);
         if (success) {
             return CommonResult.success(null);
         }

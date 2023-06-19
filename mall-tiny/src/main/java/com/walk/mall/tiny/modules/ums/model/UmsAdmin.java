@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -58,8 +60,13 @@ public class UmsAdmin implements Serializable {
     @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
     private Integer status;
 
+    // 只返回用户的第一个角色
     @TableField(exist = false)
     private String roleName;
+    // 返回当前用户所有的角色
+    @TableField(exist = false)
+    private List<String> roles;
+
 
 
 }

@@ -39,6 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 后台管理员管理Service实现类
@@ -165,6 +166,8 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper,UmsAdmin> im
         page.getRecords().forEach(t->{
             try {
                 t.setRoleName(this.getRoleList(t.getId()).get(0).getName());
+                List<UmsRole> roleList = this.getRoleList(t.getId());
+                t.setRoles(roleList.stream().map(UmsRole::getName).collect(Collectors.toList()));
             } catch (Exception e) {
                 t.setRoleName("用户没有绑定角色");
             }
