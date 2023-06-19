@@ -68,19 +68,25 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenUtil jwtTokenUtil;
 
     public Map<String,String> jsCodeLogin(String jsCode,String nickName,String icon){
+        Map<String,String> wxUser = new HashMap<>();
         JSONObject jsonObject = wxMiniApi.authCode2Session(appId, secret, jsCode);
         if(jsonObject == null) {
-            throw new RuntimeException("调用微信端授权认证接口错误");
+            // 添加信息到wxUser中
+            wxUser.put("token", "");
+            wxUser.put("tokenHead", tokenHead);
+            return wxUser;
         }
         String openId = jsonObject.getString("openid");
         if(openId==null){
-            throw new RuntimeException("调用微信端授权认证接口错误");
+            // 添加信息到wxUser中
+            wxUser.put("token", "token异常");
+            wxUser.put("tokenHead", "");
+            return wxUser;
         }
         // 在数据库查询是否存在用户
         UmsAdmin  umsAdmin = umsAdminService.getOne(new LambdaQueryWrapper<UmsAdmin>()
             .eq(!StringUtils.isEmpty(openId),UmsAdmin::getUsername , openId));
 
-        Map<String,String> wxUser = new HashMap<>();
         // 用户存在直接登陆
         if(Objects.nonNull(umsAdmin)){
             // 获取用户token
@@ -88,6 +94,7 @@ public class AuthServiceImpl implements AuthService {
             // 添加信息到wxUser中
             wxUser.put("token", token);
             wxUser.put("tokenHead", tokenHead);
+            return wxUser;
         }
 
         // 用户不存在创建用户登陆
@@ -95,7 +102,7 @@ public class AuthServiceImpl implements AuthService {
         umsAdminParam.setUsername(openId);
         umsAdminParam.setPassword(password);
         umsAdminParam.setNickName(nickName);
-        umsAdmin.setIcon(icon);
+        umsAdminParam.setIcon(icon);
         if(StringUtils.isBlank(nickName)){
             // 如果nickName为空就设置为openId
             umsAdminParam.setNickName(openId);
