@@ -162,6 +162,7 @@ public class AuthServiceImpl implements AuthService {
             // 添加信息到wxUser中
             wxUser.put("token", token);
             wxUser.put("tokenHead", tokenHead);
+            return wxUser;
         }
 
         // 用户不存在创建用户登陆
