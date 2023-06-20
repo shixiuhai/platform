@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.common.api.CommonResult;
+import com.walk.mall.tiny.common.service.RedisService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.walk.mall.tiny.common.api.CommonPage;
 import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
@@ -26,6 +27,7 @@ public class UmsBusinessAnchorDetailController {
     private UmsBusinessAnchorDetailService umsBusinessAnchorDetailService;
     @Autowired
     private UmsAdminService umsAdminService;
+    
     
     @PostMapping("")
     public CommonResult saveUserDetail(@RequestBody UmsBusinessAnchorDetail umsBusinessAnchorDetail){
@@ -65,6 +67,12 @@ public class UmsBusinessAnchorDetailController {
                              @RequestParam(value = "size", required = true, defaultValue = "10") Integer size){
         Page<UmsBusinessAnchorDetail> all = umsBusinessAnchorDetailService.list(id, page, size);
         return CommonResult.success(CommonPage.restPage(all), null);
+    }
+
+    @GetMapping("/day")
+    public CommonResult listDay(){
+        UmsBusinessAnchorDetail umsBusinessAnchorDetail = umsBusinessAnchorDetailService.listUserDay();
+        return CommonResult.success(umsBusinessAnchorDetail, null);
     }
     
 }

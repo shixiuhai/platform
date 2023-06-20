@@ -70,7 +70,7 @@ public class UmsBusinessWorkstarController {
         return CommonResult.failed();
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/delByUser")
     public CommonResult deleteByuser(@RequestParam(value = "workId", required = true) Integer workId,
                                     @RequestParam(value = "userId", required = true) Integer userId,
                                     @RequestParam(value = "type", required = true) Integer type,
