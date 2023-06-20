@@ -37,7 +37,7 @@ public class UmsBusinessWorkcommentController {
 
     
     @GetMapping("")
-    public  CommonResult list(@RequestParam(value="workdId",required = false) Integer workId,
+    public  CommonResult list(@RequestParam(value="workId",required = false) Integer workId,
                 @RequestParam(value = "anchorId", required = false) Integer anchorId,
                 @RequestParam(value = "userId", required = false) Integer userId,
                 @RequestParam(value = "id", required = false) Integer id,
