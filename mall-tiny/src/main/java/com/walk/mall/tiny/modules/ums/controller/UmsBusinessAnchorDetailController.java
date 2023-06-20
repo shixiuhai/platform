@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walk.mall.tiny.common.api.CommonResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.walk.mall.tiny.common.api.CommonPage;
+import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessAnchorDetail;
+import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 import com.walk.mall.tiny.modules.ums.service.UmsBusinessAnchorDetailService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,10 +24,17 @@ import lombok.extern.slf4j.Slf4j;
 public class UmsBusinessAnchorDetailController {
     @Autowired 
     private UmsBusinessAnchorDetailService umsBusinessAnchorDetailService;
+    @Autowired
+    private UmsAdminService umsAdminService;
     
     @PostMapping("")
     public CommonResult saveUserDetail(@RequestBody UmsBusinessAnchorDetail umsBusinessAnchorDetail){
         boolean success = umsBusinessAnchorDetailService.saveUserDetail(umsBusinessAnchorDetail);
+        UmsAdmin umsAdmin = umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId());
+        umsAdmin.setNickName(umsBusinessAnchorDetail.getAnchorName());
+        umsAdmin.setIcon(umsBusinessAnchorDetail.getIcon());
+        // 更新用户的nickName和icon
+        umsAdminService.update(umsAdmin.getId(), umsAdmin);
         if(success){
             return CommonResult.success(null, null);
         }
