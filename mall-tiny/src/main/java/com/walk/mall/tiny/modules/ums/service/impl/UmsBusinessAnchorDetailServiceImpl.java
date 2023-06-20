@@ -19,7 +19,9 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
     @Override
     public boolean saveUserDetail(UmsBusinessAnchorDetail umsBusinessAnchorDetail){
         if(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId())!=null){
-            umsBusinessAnchorDetail.setAnchorName(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId()).getNickName());
+            if(umsBusinessAnchorDetail.getAnchorName()==null){
+                umsBusinessAnchorDetail.setAnchorName(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId()).getNickName());
+            }
         }
         
         this.saveOrUpdate(umsBusinessAnchorDetail);
