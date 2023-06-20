@@ -30,11 +30,6 @@ public class UmsBusinessAnchorDetailController {
     @PostMapping("")
     public CommonResult saveUserDetail(@RequestBody UmsBusinessAnchorDetail umsBusinessAnchorDetail){
         boolean success = umsBusinessAnchorDetailService.saveUserDetail(umsBusinessAnchorDetail);
-        UmsAdmin umsAdmin = umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId());
-        umsAdmin.setNickName(umsBusinessAnchorDetail.getAnchorName());
-        umsAdmin.setIcon(umsBusinessAnchorDetail.getIcon());
-        // 更新用户的nickName和icon
-        umsAdminService.update(umsAdmin.getId(), umsAdmin);
         if(success){
             return CommonResult.success(null, null);
         }
@@ -53,6 +48,11 @@ public class UmsBusinessAnchorDetailController {
     @PutMapping("")
     public CommonResult update(@RequestBody UmsBusinessAnchorDetail umsBusinessAnchorDetail){
         boolean success = umsBusinessAnchorDetailService.updateById(umsBusinessAnchorDetail);
+        UmsAdmin umsAdmin = umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId());
+        umsAdmin.setNickName(umsBusinessAnchorDetail.getAnchorName());
+        umsAdmin.setIcon(umsBusinessAnchorDetail.getIcon());
+        // 更新用户的nickName和icon
+        umsAdminService.update(umsAdmin.getId(), umsAdmin);
         if(success){
             return CommonResult.success(null, null);
         }
