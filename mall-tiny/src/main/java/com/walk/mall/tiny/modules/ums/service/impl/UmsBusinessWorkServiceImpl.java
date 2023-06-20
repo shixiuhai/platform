@@ -52,7 +52,9 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
         Long userId = SpringUtil.getUserId();
         all.getRecords().forEach(t->{
             // 设置返回头像
-            t.setIcon(umsAdminService.getById(t.getAuthorId()).getIcon());
+            if(umsAdminService.getById(t.getAuthorId())!=null){
+                t.setIcon(umsAdminService.getById(t.getAuthorId()).getIcon());
+            }
             // 默认设置点赞为false
             t.setStar(false);
             // 默认设置点赞总是为0

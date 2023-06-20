@@ -11,4 +11,5 @@ public interface UmsBusinessWorkstarService extends IService<UmsBusinessWorkstar
     boolean isStar(Integer workId,Integer commentId,Integer userId, Integer type);
     boolean isCollect(Integer workId,Integer userId, Integer type);
     Long StarNumber(Integer workId,Integer commentId,Integer type);
+    boolean removeByUser(Integer workId,Integer userId, Integer type, Integer commentId);
 }

@@ -62,8 +62,21 @@ public class UmsBusinessWorkstarController {
 
 
     @DeleteMapping("")
-    public CommonResult delete(@RequestParam(value = "id", required = true) Integer id){
+    public CommonResult deleteByadmin(@RequestParam(value = "id", required = true) Integer id){
         boolean success = umsBusinessWorkstarService.removeById(id);
+        if(success){
+            return CommonResult.success(null, null);
+        }
+        return CommonResult.failed();
+    }
+
+    @DeleteMapping("")
+    public CommonResult deleteByuser(@RequestParam(value = "workId", required = true) Integer workId,
+                                    @RequestParam(value = "userId", required = true) Integer userId,
+                                    @RequestParam(value = "type", required = true) Integer type,
+                                    @RequestParam(value = "commentId", required = false) Integer commentId){
+                    
+        boolean success = umsBusinessWorkstarService.removeByUser(workId, userId, type, commentId);
         if(success){
             return CommonResult.success(null, null);
         }

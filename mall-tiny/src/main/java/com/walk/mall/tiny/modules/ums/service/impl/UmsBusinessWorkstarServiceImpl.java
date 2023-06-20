@@ -133,5 +133,20 @@ public class UmsBusinessWorkstarServiceImpl extends ServiceImpl<UmsBusinessWorks
 
     }
 
-    
+    public boolean removeByUser(Integer workId,Integer userId, Integer type,Integer commentId){
+        UmsBusinessWorkstar umsBusinessWorkstar = this.getOne(
+            new QueryWrapper<UmsBusinessWorkstar>()
+            .eq(Objects.nonNull(workId), "work_id", workId)
+            .eq(Objects.nonNull(userId),"user_id",userId)            
+            .eq(Objects.nonNull(userId),"type",type)
+        );
+        if(Objects.nonNull(umsBusinessWorkstar)){
+            this.removeById(umsBusinessWorkstar.getId());
+            return true;
+        }
+        
+        return false;
+
+
+    }
 }
