@@ -72,8 +72,9 @@ public class UmsBusinessAnchorDetail implements Serializable{
     private String	anchorStytle;
 
     // 主持人头像
-    @TableField(exist=false)
     private String icon;
+
+    
 
 
 

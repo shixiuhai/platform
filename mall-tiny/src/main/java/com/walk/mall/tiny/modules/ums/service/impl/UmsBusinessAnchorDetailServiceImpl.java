@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.walk.mall.tiny.modules.ums.mapper.UmsBusinessAnchorDetailMapper;
+import com.walk.mall.tiny.modules.ums.model.UmsAdmin;
 import com.walk.mall.tiny.modules.ums.model.UmsBusinessAnchorDetail;
 import com.walk.mall.tiny.modules.ums.service.UmsAdminService;
 import com.walk.mall.tiny.modules.ums.service.UmsBusinessAnchorDetailService;
@@ -18,7 +19,12 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
 
     @Override
     public boolean saveUserDetail(UmsBusinessAnchorDetail umsBusinessAnchorDetail){
-        if(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId())!=null){
+        UmsAdmin umsAdmin = umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId());
+        umsAdmin.setNickName(umsBusinessAnchorDetail.getAnchorName());
+        umsAdmin.setIcon(umsBusinessAnchorDetail.getIcon());
+        // 更新用户的nickName和icon
+        umsAdminService.update(umsAdmin.getId(), umsAdmin);
+        if(umsAdmin!=null){
             if(umsBusinessAnchorDetail.getAnchorName()==null){
                 umsBusinessAnchorDetail.setAnchorName(umsAdminService.getById(umsBusinessAnchorDetail.getAnchorId()).getNickName());
             }
@@ -35,12 +41,12 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
                 .lambda()
                 .eq(!Objects.isNull(id),UmsBusinessAnchorDetail::getAnchorId,id)
         );
-        // 设置头像地址
-        all.getRecords().forEach(t->{
-           if(umsAdminService.getById(t.getAnchorId())!=null){
-                t.setIcon(umsAdminService.getById(t.getAnchorId()).getIcon());
-           }
-        });
+        // // 设置头像地址
+        // all.getRecords().forEach(t->{
+        //    if(umsAdminService.getById(t.getAnchorId())!=null){
+        //         t.setIcon(umsAdminService.getById(t.getAnchorId()).getIcon());
+        //    }
+        // });
         return all;
     }
     
