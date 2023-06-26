@@ -41,6 +41,8 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
                 .eq(!Objects.isNull(userId),UmsBusinessWorkcomment::getUserId,userId)
                 .eq(!Objects.isNull(type),UmsBusinessWorkcomment::getType,type)
                 .eq(!Objects.isNull(id),UmsBusinessWorkcomment::getId,id)
+                // 时间降序排序
+                .orderByDesc(UmsBusinessWorkcomment::getCreatedTime)
                 // 一级评论没有parent_id
                 .isNull(Objects.isNull(id),UmsBusinessWorkcomment::getParentId)
         );
@@ -109,6 +111,10 @@ public class UmsBusinessWorkcommentServiceImpl extends ServiceImpl<UmsBusinessWo
             umsBusinessWorkcomment.setAnchorName(umsBusinessWorkService.getById(umsBusinessWorkcomment.getWorkId()).getAnthorName());
             // 设置作品评论用户名
             umsBusinessWorkcomment.setUserName(umsAdminService.getById(umsBusinessWorkcomment.getUserId()).getNickName());
+            // 设置作品被评论人的名字
+            if(umsBusinessWorkcomment.getRespondentId()!=null){
+                umsBusinessWorkcomment.setRespondentName(umsAdminService.getById(umsBusinessWorkcomment.getRespondentId()).getNickName());
+            }
             umsBusinessWorkcomment.setCreatedTime(new Date());
             // 保存
             this.save(umsBusinessWorkcomment);

@@ -79,6 +79,9 @@ public class UmsBusinessWorkcomment implements Serializable{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date    createdTime;
 
+    private Long respondentId;
+
+    private String respondentName;
     // 发表评论人的头像
     @TableField(exist=false)
     private String icon;
