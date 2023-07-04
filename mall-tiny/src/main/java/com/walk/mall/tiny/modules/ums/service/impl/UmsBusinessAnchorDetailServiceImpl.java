@@ -4,6 +4,7 @@ import org.apache.logging.log4j.message.ReusableMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -40,12 +41,13 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
         return true;
     }
     
-    public Page<UmsBusinessAnchorDetail> list(Integer id, Integer page, Integer size){
+    public Page<UmsBusinessAnchorDetail> list(Integer id, String anchorName, Integer page, Integer size){
         Page<UmsBusinessAnchorDetail> all = this.page(
             new Page<UmsBusinessAnchorDetail>(page,size),
             new QueryWrapper<UmsBusinessAnchorDetail>()
                 .lambda()
                 .eq(!Objects.isNull(id),UmsBusinessAnchorDetail::getAnchorId,id)
+                .eq(!StringUtils.isEmpty(anchorName),UmsBusinessAnchorDetail::getAnchorName,anchorName)
                 .orderByAsc(UmsBusinessAnchorDetail::getSortId)
         );
         // // 设置头像地址

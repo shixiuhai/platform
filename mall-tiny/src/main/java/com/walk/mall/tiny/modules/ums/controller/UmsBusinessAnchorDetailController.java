@@ -63,9 +63,10 @@ public class UmsBusinessAnchorDetailController {
 
     @GetMapping("")
     public CommonResult list(@RequestParam(value = "anchorId", required = false) Integer id,
+                             @RequestParam(value = "anchorName", required = false) String anchorName,
                              @RequestParam(value = "page", required = true, defaultValue = "1") Integer page,
                              @RequestParam(value = "size", required = true, defaultValue = "10") Integer size){
-        Page<UmsBusinessAnchorDetail> all = umsBusinessAnchorDetailService.list(id, page, size);
+        Page<UmsBusinessAnchorDetail> all = umsBusinessAnchorDetailService.list(id, anchorName,page, size);
         return CommonResult.success(CommonPage.restPage(all), null);
     }
 
