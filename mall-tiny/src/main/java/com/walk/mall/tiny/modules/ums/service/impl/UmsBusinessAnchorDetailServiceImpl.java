@@ -46,6 +46,7 @@ public class UmsBusinessAnchorDetailServiceImpl extends ServiceImpl<UmsBusinessA
             new QueryWrapper<UmsBusinessAnchorDetail>()
                 .lambda()
                 .eq(!Objects.isNull(id),UmsBusinessAnchorDetail::getAnchorId,id)
+                .orderByAsc(UmsBusinessAnchorDetail::getSortId)
         );
         // // 设置头像地址
         // all.getRecords().forEach(t->{

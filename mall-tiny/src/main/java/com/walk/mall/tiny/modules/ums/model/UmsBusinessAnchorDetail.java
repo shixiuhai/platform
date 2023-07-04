@@ -74,6 +74,11 @@ public class UmsBusinessAnchorDetail implements Serializable{
     // 主持人头像
     private String icon;
 
+    // 排序id
+    private Long sortId;
+
+
+
     
 
 
