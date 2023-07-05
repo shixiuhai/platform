@@ -11,7 +11,7 @@
  Target Server Version : 50742
  File Encoding         : 65001
 
- Date: 04/07/2023 11:59:01
+ Date: 05/07/2023 11:43:12
 */
 
 SET NAMES utf8mb4;
@@ -85,7 +85,7 @@ INSERT INTO `ums_admin` VALUES (75, 'owQK84jgahxIYecjd2BbLkFgGwKw', '$2a$10$3qn4
 INSERT INTO `ums_admin` VALUES (76, 'owQK84tZ6uPaRAFJKJFsV9oAaTB4', '$2a$10$.w2ilXu6/8mtyK.1Tx7kpO1oTsUhGmpe9gsul9/6yQNt7uS7wxeb2', '15888981083', '/static/file/20230702/bade7113423d46be82970534239284fa.jpg', NULL, '齐文', NULL, '2023-07-01 12:45:26', NULL, 1);
 INSERT INTO `ums_admin` VALUES (77, 'owQK84oXKFUCeQq_eQ9iVRuoSoKY', '$2a$10$Dh5Yye8D9AyEPzbebCfJreZSYlbcfW88iooaGQOdNyOUhVWFSbz7e', '13567005762', '/static/file/20230701/a76372ea220b424e975ffbd62d49be1b.jpg', NULL, '东明', NULL, '2023-07-01 12:45:57', NULL, 1);
 INSERT INTO `ums_admin` VALUES (78, 'owQK84tFT1DYylettX3mKbS_w5io', '$2a$10$f4vCgSDvzQLJrcHxJWHCLu4.NyGuXNbDYCRYiULxw4wZDK0BcVSma', NULL, '/static/file/20230701/d3a835ece10a4b6cb8ded7a311d31e0b.jpg', NULL, '普通用户', NULL, '2023-07-01 12:56:50', NULL, 1);
-INSERT INTO `ums_admin` VALUES (79, 'owQK84hnFyhVjDJaiUA8tscPyx4c', '$2a$10$iQ68dx6TYUBYAKYHTyYwxOAU/7Q6EUTKT6nr4TrOku87C4o1VA6PS', '13958468863', '/static/file/20230701/9bd5da0c7ea3467ab32ad5b43a97b187.jpg', NULL, '陈超', NULL, '2023-07-01 12:58:36', NULL, 1);
+INSERT INTO `ums_admin` VALUES (79, 'owQK84hnFyhVjDJaiUA8tscPyx4c', '$2a$10$iQ68dx6TYUBYAKYHTyYwxOAU/7Q6EUTKT6nr4TrOku87C4o1VA6PS', '13958468863', '/static/file/20230704/a6f68766e0fc4f63861c3f6d0ce6db74.jpg', NULL, '陈超', NULL, '2023-07-01 12:58:36', NULL, 1);
 INSERT INTO `ums_admin` VALUES (80, 'owQK84gkVi-P6jm4veoy7uVLfwuA', '$2a$10$8UfzSlLVeumkbaIqdWlzIuoB7wNOa1tkCkPDcAiaCM5BfjiwWh/ga', '15088203736', '/static/file/20230701/c1da9c67fee046588d24e8f545ee2af3.jpg', NULL, '汪瑞', NULL, '2023-07-01 13:02:34', NULL, 1);
 INSERT INTO `ums_admin` VALUES (81, 'owQK84idSam3fywyfFgTDSnY6QUk', '$2a$10$e7WWtfAWfQI3DhfBjv2zkec1ucuPzpfBVbuZW.4qjXMQhydXhkNf6', '13757027710', '/static/file/20230701/17b221e2aafb46afabd5bda6a4d70668.jpg', NULL, '至简主持人鑫辰', NULL, '2023-07-01 13:09:24', NULL, 1);
 INSERT INTO `ums_admin` VALUES (82, 'owQK84hPwQePHmk9tSpTFHdfKdLg', '$2a$10$Ac4KYMmdRN687r/RttnXEu5qEqt57EA72sEDTDrNTV6pQyP0TcZ0W', '13757997900', '/static/file/20230701/c744e634e3e040deace840fe2ba0ca4e.jpg', NULL, '至简旭东', NULL, '2023-07-01 13:13:09', NULL, 1);
@@ -107,7 +107,7 @@ CREATE TABLE `ums_admin_login_log`  (
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登录类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 970 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 971 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户登录日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_login_log
@@ -797,6 +797,7 @@ INSERT INTO `ums_admin_login_log` VALUES (966, 3, '2023-07-02 13:01:54', '127.0.
 INSERT INTO `ums_admin_login_log` VALUES (967, 3, '2023-07-03 09:40:18', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (968, 3, '2023-07-04 11:28:54', '127.0.0.1', NULL, NULL);
 INSERT INTO `ums_admin_login_log` VALUES (969, 3, '2023-07-04 11:51:03', '127.0.0.1', NULL, NULL);
+INSERT INTO `ums_admin_login_log` VALUES (970, 3, '2023-07-04 13:22:24', '127.0.0.1', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -898,35 +899,36 @@ CREATE TABLE `ums_business_anchor_detail`  (
   `sort_id` bigint(20) NULL DEFAULT NULL COMMENT '排序id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `anchorId`(`anchor_id`) USING BTREE COMMENT '唯一用户id'
-) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_anchor_detail
 -- ----------------------------
-INSERT INTO `ums_business_anchor_detail` VALUES (33, 48, '葫芦娃', '200', '28', '金牛座', '2023-06-26 00:00:00', '婚礼', '/static/file/20230626/56bcfd540dd54b22b29b8436f9c91114.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (34, 61, '慕曦', '176', '30', '天秤座', '2012-12-24 00:00:00', '亦雅亦痞 ', '/static/file/20230701/432ff0f31ed0425698114caa6ecc13b7.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (35, 72, '陈宇坤', '176', '28', '巨蟹座', '2019-04-01 00:00:00', '做人嘛，最重要的是开心啦～', '/static/file/20230701/193c8761dbc24cf886248b94921b3090.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (36, 70, '孟飞', '179', '38', '射手座', '2011-08-01 00:00:00', '欢快  热情', '/static/file/20230701/8fc1ea49df6c4c3e85226d1b55da77f3.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (37, 68, 'CC', '160', '28', '金牛座', '2017-07-05 00:00:00', '温暖 简单 轻松', '/static/file/20230701/fa9f9c809c26432aa208272b908a34b9.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (38, 60, '主持人徐少', '172', '32', '摩羯座', '2013-03-08 00:00:00', '沉浸式', '/static/file/20230701/c25b12f90b0b46bfa856cc262511ef94.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (39, 56, '余航', '175', '25', '天秤座', '2018-06-30 00:00:00', '不煽情 自然 简单', '/static/file/20230701/b13e99bcc4374e11b8f547b6931465f5.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (40, 63, '王丹', '160', '33', '金牛座', '2014-05-01 00:00:00', '轻松自然  端庄大气', '/static/file/20230701/77341009f1a34d9a95555597e2ec86ba.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (41, 59, '嘉骏', '181', '30', '双鱼座', '2018-07-01 00:00:00', '轻松 欢快 热情', '/static/file/20230701/77de9cfba48f4b72a100242d5ae37a7f.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (42, 71, '辛涛', '174', '27', '射手座', '2017-09-01 00:00:00', '温暖，轻松', '/static/file/20230701/b1451df6afda43e882f5d7846863d094.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (43, 81, '至简主持人鑫辰', '172', '33', '狮子座', '2012-07-01 00:00:00', '幽默风趣，阳光，氛围好', '/static/file/20230701/17b221e2aafb46afabd5bda6a4d70668.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (44, 58, '谢昭', '170', '27', '双子座', '2017-09-01 00:00:00', '真听真感受，为婚礼穿针引线', '/static/file/20230701/076e82d653df4ff0a6e2f5968f408482.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (45, 77, '东明', '170', NULL, '水瓶座', '2007-07-10 00:00:00', '沉稳 自然 大气', '/static/file/20230701/a76372ea220b424e975ffbd62d49be1b.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (46, 82, '至简旭东', '170', '35', '巨蟹座', '2014-09-06 00:00:00', '文中带雅，张弛有度。', '/static/file/20230701/c744e634e3e040deace840fe2ba0ca4e.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (47, 74, '小文', '171', '35', '双鱼座', '2015-06-06 00:00:00', '轻松幽默，温暖有趣', '/static/file/20230702/75552e4071484ec381f7ef3549321689.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (48, 18, '主持人', '173', '23', '水瓶座', '2023-05-17 00:00:00', '婚礼', '/static/file/20230628/0504ea0ad6a9435db83719e6f17ddf07.png', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (49, 38, '刘勇', '172', '34', '巨蟹座', '2014-05-01 00:00:00', '', '/static/file/20230701/27bad87bd14d499c8c0d7d488f856aa2.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (50, 57, '大饼', '177', '36', '射手座', '2007-07-12 00:00:00', '沉稳，轻松，自然', '/static/file/20230701/257e85a9801845608eb46579b9dd938a.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (51, 75, '沐阳', '175', '32', '狮子座', '2011-06-30 00:00:00', '温暖有趣、可咸可甜', '/static/file/20230701/2df24f20b0dd459b93f44207df2b8fa9.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (52, 64, '宇翔', '180', '28', '摩羯座', '2015-03-26 00:00:00', NULL, '/static/file/20230701/6e8ef9c3c3d84128930c2dafb1f75076.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (53, 67, '至简主持人:海波', '178', '33', '摩羯座', '2014-04-01 00:00:00', NULL, '/static/file/20230701/5c4a75028313445fa31ce7de27966e17.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (54, 65, '朱伟东', '182', '27', '天秤座', '2021-08-01 00:00:00', '欢乐轻松 热闹不低俗', '/static/file/20230701/d541617413964daab19e5c9e8366e428.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (55, 73, '张猛', '176', '26', '白羊座', '2019-07-05 00:00:00', '轻松愉快', '/static/file/20230702/5dc6a0d6d79449449ac2e5e9f84686f6.jpg', NULL);
-INSERT INTO `ums_business_anchor_detail` VALUES (56, 76, '齐文', '180', '35', '天蝎座', '2011-07-05 00:00:00', '雅致且睿智，风趣且清新', '/static/file/20230702/bade7113423d46be82970534239284fa.jpg', NULL);
+INSERT INTO `ums_business_anchor_detail` VALUES (33, 48, '葫芦娃', '200', '28', '金牛座', '2023-06-26 00:00:00', '婚礼', '/static/file/20230626/56bcfd540dd54b22b29b8436f9c91114.jpg', 4);
+INSERT INTO `ums_business_anchor_detail` VALUES (34, 61, '慕曦', '176', '30', '天秤座', '2012-12-24 00:00:00', '亦雅亦痞 ', '/static/file/20230701/432ff0f31ed0425698114caa6ecc13b7.jpg', 1);
+INSERT INTO `ums_business_anchor_detail` VALUES (35, 72, '陈宇坤', '176', '28', '巨蟹座', '2019-04-01 00:00:00', '做人嘛，最重要的是开心啦～', '/static/file/20230701/193c8761dbc24cf886248b94921b3090.jpg', 3);
+INSERT INTO `ums_business_anchor_detail` VALUES (36, 70, '孟飞', '179', '38', '射手座', '2011-08-01 00:00:00', '欢快  热情', '/static/file/20230701/8fc1ea49df6c4c3e85226d1b55da77f3.jpg', 4);
+INSERT INTO `ums_business_anchor_detail` VALUES (37, 68, 'CC', '160', '28', '金牛座', '2017-07-05 00:00:00', '温暖 简单 轻松', '/static/file/20230701/fa9f9c809c26432aa208272b908a34b9.jpg', 5);
+INSERT INTO `ums_business_anchor_detail` VALUES (38, 60, '主持人徐少', '172', '32', '摩羯座', '2013-03-08 00:00:00', '沉浸式', '/static/file/20230701/c25b12f90b0b46bfa856cc262511ef94.jpg', 6);
+INSERT INTO `ums_business_anchor_detail` VALUES (39, 56, '余航', '175', '25', '天秤座', '2018-06-30 00:00:00', '不煽情 自然 简单', '/static/file/20230701/b13e99bcc4374e11b8f547b6931465f5.jpg', 7);
+INSERT INTO `ums_business_anchor_detail` VALUES (40, 63, '王丹', '160', '33', '金牛座', '2014-05-01 00:00:00', '轻松自然  端庄大气', '/static/file/20230701/77341009f1a34d9a95555597e2ec86ba.jpg', 8);
+INSERT INTO `ums_business_anchor_detail` VALUES (41, 59, '嘉骏', '181', '30', '双鱼座', '2018-07-01 00:00:00', '轻松 欢快 热情', '/static/file/20230701/77de9cfba48f4b72a100242d5ae37a7f.jpg', 9);
+INSERT INTO `ums_business_anchor_detail` VALUES (42, 71, '辛涛', '174', '27', '射手座', '2017-09-01 00:00:00', '温暖，轻松', '/static/file/20230701/b1451df6afda43e882f5d7846863d094.jpg', 10);
+INSERT INTO `ums_business_anchor_detail` VALUES (43, 81, '至简主持人鑫辰', '172', '33', '狮子座', '2012-07-01 00:00:00', '幽默风趣，阳光，氛围好', '/static/file/20230701/17b221e2aafb46afabd5bda6a4d70668.jpg', 11);
+INSERT INTO `ums_business_anchor_detail` VALUES (44, 58, '谢昭', '170', '27', '双子座', '2017-09-01 00:00:00', '真听真感受，为婚礼穿针引线', '/static/file/20230701/076e82d653df4ff0a6e2f5968f408482.jpg', 12);
+INSERT INTO `ums_business_anchor_detail` VALUES (45, 77, '东明', '170', NULL, '水瓶座', '2007-07-10 00:00:00', '沉稳 自然 大气', '/static/file/20230701/a76372ea220b424e975ffbd62d49be1b.jpg', 13);
+INSERT INTO `ums_business_anchor_detail` VALUES (46, 82, '至简旭东', '170', '35', '巨蟹座', '2014-09-06 00:00:00', '文中带雅，张弛有度。', '/static/file/20230701/c744e634e3e040deace840fe2ba0ca4e.jpg', 14);
+INSERT INTO `ums_business_anchor_detail` VALUES (47, 74, '小文', '171', '35', '双鱼座', '2015-06-06 00:00:00', '轻松幽默，温暖有趣', '/static/file/20230702/75552e4071484ec381f7ef3549321689.jpg', 15);
+INSERT INTO `ums_business_anchor_detail` VALUES (48, 18, '主持人', '173', '23', '水瓶座', '2023-05-17 00:00:00', '婚礼', '/static/file/20230628/0504ea0ad6a9435db83719e6f17ddf07.png', 16);
+INSERT INTO `ums_business_anchor_detail` VALUES (49, 38, '刘勇', '172', '34', '巨蟹座', '2014-05-01 00:00:00', '', '/static/file/20230701/27bad87bd14d499c8c0d7d488f856aa2.jpg', 17);
+INSERT INTO `ums_business_anchor_detail` VALUES (50, 57, '大饼', '177', '36', '射手座', '2007-07-12 00:00:00', '沉稳，轻松，自然', '/static/file/20230701/257e85a9801845608eb46579b9dd938a.jpg', 18);
+INSERT INTO `ums_business_anchor_detail` VALUES (51, 75, '沐阳', '175', '32', '狮子座', '2011-06-30 00:00:00', '温暖有趣、可咸可甜', '/static/file/20230701/2df24f20b0dd459b93f44207df2b8fa9.jpg', 19);
+INSERT INTO `ums_business_anchor_detail` VALUES (52, 64, '宇翔', '180', '28', '摩羯座', '2015-03-26 00:00:00', NULL, '/static/file/20230701/6e8ef9c3c3d84128930c2dafb1f75076.jpg', 20);
+INSERT INTO `ums_business_anchor_detail` VALUES (53, 67, '至简主持人:海波', '178', '33', '摩羯座', '2014-04-01 00:00:00', NULL, '/static/file/20230701/5c4a75028313445fa31ce7de27966e17.jpg', 21);
+INSERT INTO `ums_business_anchor_detail` VALUES (54, 65, '朱伟东', '182', '27', '天秤座', '2021-08-01 00:00:00', '欢乐轻松 热闹不低俗', '/static/file/20230701/d541617413964daab19e5c9e8366e428.jpg', 22);
+INSERT INTO `ums_business_anchor_detail` VALUES (55, 73, '张猛', '176', '26', '白羊座', '2019-07-05 00:00:00', '轻松愉快', '/static/file/20230702/5dc6a0d6d79449449ac2e5e9f84686f6.jpg', 23);
+INSERT INTO `ums_business_anchor_detail` VALUES (56, 76, '齐文', '180', '35', '天蝎座', '2011-07-05 00:00:00', '雅致且睿智，风趣且清新', '/static/file/20230702/bade7113423d46be82970534239284fa.jpg', 24);
+INSERT INTO `ums_business_anchor_detail` VALUES (57, 79, '陈超', '176', '27', '白羊座', '2018-01-01 00:00:00', NULL, '/static/file/20230704/a6f68766e0fc4f63861c3f6d0ce6db74.jpg', 99);
 
 -- ----------------------------
 -- Table structure for ums_business_company
@@ -996,13 +998,39 @@ CREATE TABLE `ums_business_work`  (
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '动态内容',
   `img_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
   `video_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
+  `sort_id` bigint(20) NULL DEFAULT NULL COMMENT '作品排序id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '作品表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '作品表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_work
 -- ----------------------------
-INSERT INTO `ums_business_work` VALUES (38, 57, '吴兆斌', '/static/file/20230704/d5ea6b2d75654e6781c5895ab31ea171.png', '婚礼仪式', NULL, 2, '2023-07-04 11:33:17', 1, NULL, '/static/file/20230704/d5ea6b2d75654e6781c5895ab31ea171.png', '/static/file/20230704/00ca3f826b674b1687e562c8f38384ed.mp4');
+INSERT INTO `ums_business_work` VALUES (38, 57, '吴兆斌', '/static/file/20230704/d5ea6b2d75654e6781c5895ab31ea171.png', '婚礼仪式', NULL, 6, '2023-07-04 11:33:17', 1, NULL, '/static/file/20230704/d5ea6b2d75654e6781c5895ab31ea171.png', '/static/file/20230704/00ca3f826b674b1687e562c8f38384ed.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (39, 74, '小文', '/static/file/20230704/ee87260599164103871ae142319c8f06.jpg', '婚礼仪式', NULL, 2, '2023-07-04 12:52:08', 1, NULL, '/static/file/20230704/ee87260599164103871ae142319c8f06.jpg', '/static/file/20230704/3117a6735dd5486cbdae2bf60f61438a.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (40, 72, '陈宇坤', '/static/file/20230704/b04dc08e0e7f45b78da098db2e047a19.jpg', '婚礼仪式', NULL, 3, '2023-07-04 12:56:36', 1, NULL, '/static/file/20230704/b04dc08e0e7f45b78da098db2e047a19.jpg', '/static/file/20230704/89cf8f37706f4c1195657c633069101b.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (41, 64, '宇翔', '/static/file/20230704/7fd891215dc248ddb57f5df4a95bc75e.jpg', '婚礼仪式', NULL, 2, '2023-07-04 12:59:13', 1, NULL, '/static/file/20230704/7fd891215dc248ddb57f5df4a95bc75e.jpg', '/static/file/20230704/1c5243157d154cd4bbcacf3acd62f399.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (42, 75, '沐阳', '/static/file/20230704/a9547ddfba7b47998504b4941314ef01.png', '婚礼仪式', NULL, 2, '2023-07-04 13:20:16', 1, NULL, '/static/file/20230704/a9547ddfba7b47998504b4941314ef01.png', '/static/file/20230704/8991f06a78a04f929a003e612b89c521.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (43, 71, '辛涛', '/static/file/20230704/f4eb787846e24402b05770085a318738.png', '婚礼仪式', NULL, 4, '2023-07-04 13:21:37', 1, NULL, '/static/file/20230704/f4eb787846e24402b05770085a318738.png', '/static/file/20230704/f59b13565135451c9e8cab535de1b9ae.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (44, 75, '沐阳', '/static/file/20230704/972a4abf11a24ba0be9ffc3f4b7d3f71.png', '互动', NULL, 4, '2023-07-04 13:42:23', 1, NULL, '/static/file/20230704/972a4abf11a24ba0be9ffc3f4b7d3f71.png', '/static/file/20230704/a448f018843d44549ab3623f9f8c6dc2.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (45, 75, '沐阳', '/static/file/20230704/ea4c32e794634c56bb0fbb215df51029.png', '互动2', NULL, 4, '2023-07-04 13:43:10', 1, NULL, '/static/file/20230704/ea4c32e794634c56bb0fbb215df51029.png', '/static/file/20230704/10bfcde6d517478184692670471a310c.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (46, 71, '辛涛', '/static/file/20230704/20d87187235d4dc6b9b3db6a08bd0196.jpg', '婚礼仪式', NULL, 1, '2023-07-04 13:46:32', 1, NULL, '/static/file/20230704/20d87187235d4dc6b9b3db6a08bd0196.jpg', '/static/file/20230704/7fd553b1b73947dc92b831f78455fc1a.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (47, 61, '慕曦', '/static/file/20230704/a555778b7d234b7db0bf0e5bea3ca56c.png', '婚礼仪式', NULL, 2, '2023-07-04 13:58:42', 1, NULL, '/static/file/20230704/a555778b7d234b7db0bf0e5bea3ca56c.png', '/static/file/20230704/94f2aa6172674d40a4abf909030d5c43.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (48, 57, '大饼', '/static/file/20230704/ce2e7fbbc7c241a5b950852f36b94737.png', '中式样片', NULL, 0, '2023-07-04 21:47:06', 1, NULL, '/static/file/20230704/ce2e7fbbc7c241a5b950852f36b94737.png', '/static/file/20230704/bdfa80759a0845cb87b86a1b35607a61.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (49, 79, '陈超', '/static/file/20230705/e74c9ea1523f4adcb544b42948c3132b.jpg', '户外婚礼', NULL, 0, '2023-07-04 21:49:07', 1, NULL, '/static/file/20230705/e74c9ea1523f4adcb544b42948c3132b.jpg', '/static/file/20230704/0ad57cafe38146e9897a9a534c3184a4.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (50, 79, '陈超', '/static/file/20230704/d548b6547b9f482baa71db3b212ec673.png', '婚礼仪式', NULL, 0, '2023-07-04 21:52:54', 1, NULL, '/static/file/20230704/d548b6547b9f482baa71db3b212ec673.png', '/static/file/20230704/72b625c1a1ad4e43aa4e7428b1112f51.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (51, 59, '嘉骏', '/static/file/20230704/9bdef3717a104124a0e21a51f370e616.png', '户外婚礼', NULL, 2, '2023-07-04 21:53:56', 1, NULL, '/static/file/20230704/9bdef3717a104124a0e21a51f370e616.png', '/static/file/20230704/36dafa193f324490a05f9727633b86eb.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (52, 59, '嘉骏', '/static/file/20230704/a4991cff4e054795be16f5e84f6d0c24.png', '互动', NULL, 0, '2023-07-04 21:54:25', 1, NULL, '/static/file/20230704/a4991cff4e054795be16f5e84f6d0c24.png', '/static/file/20230704/df9ea2065b7a4ac3a541c0a6e3082fd0.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (53, 60, '主持人徐少', '/static/file/20230705/b0e06956f0134be093e19fc00d894ce9.jpg', '婚礼仪式', NULL, 0, '2023-07-05 10:20:23', 1, NULL, '/static/file/20230705/b0e06956f0134be093e19fc00d894ce9.jpg', '/static/file/20230705/87948efb2ff545418bec1fce9a42f6f3.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (54, 60, '主持人徐少', '/static/file/20230705/93632f0622b8466a9a3171f08517fb42.jpg', '婚礼仪式', NULL, 1, '2023-07-05 10:21:06', 1, NULL, '/static/file/20230705/93632f0622b8466a9a3171f08517fb42.jpg', '/static/file/20230705/ad088a7160224018a011b3d7aab2551b.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (55, 77, '东明', '/static/file/20230705/1d6b1f2dc1154e1a9917c506e79e76aa.jpg', '婚礼仪式', NULL, 1, '2023-07-05 10:26:55', 1, NULL, '/static/file/20230705/1d6b1f2dc1154e1a9917c506e79e76aa.jpg', '/static/file/20230705/48ce9219952c4f2d84091c28d22d3bfd.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (56, 77, '东明', '/static/file/20230705/6091c11161304a3cbe16ebd358834ff0.jpg', '婚礼仪式', NULL, 0, '2023-07-05 10:29:07', 1, NULL, '/static/file/20230705/6091c11161304a3cbe16ebd358834ff0.jpg', '/static/file/20230705/67ac243aa7b1400ea35219dc5829a52a.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (57, 61, '慕曦', '/static/file/20230705/d6cb66043b9d4d3a972a36bc46eed8e3.jpg', '爱在墨尔本', NULL, 1, '2023-07-05 10:35:14', 1, NULL, '/static/file/20230705/d6cb66043b9d4d3a972a36bc46eed8e3.jpg', '/static/file/20230705/f61f6f4677254b109e1afe60c68e4b5a.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (58, 70, '孟飞', '/static/file/20230705/5a857d4cd5114a33be9adb3233bf4a6f.png', '婚礼仪式', NULL, 0, '2023-07-05 10:41:14', 1, NULL, '/static/file/20230705/5a857d4cd5114a33be9adb3233bf4a6f.png', '/static/file/20230705/0a39dc656fe2444995f6b2a2240cb947.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (59, 70, '孟飞', '/static/file/20230705/b11108e0b0ad45d59aeda234a61ef8ca.png', '互动', NULL, 0, '2023-07-05 10:41:53', 1, NULL, '/static/file/20230705/b11108e0b0ad45d59aeda234a61ef8ca.png', '/static/file/20230705/1623c179926a47038ce4f8d5002208af.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (60, 61, '慕曦', '/static/file/20230705/c2bf48c11c8a4e8ba3e7e081a2f0084d.jpg', '摄像师的婚礼', NULL, 0, '2023-07-05 10:47:54', 1, NULL, '/static/file/20230705/c2bf48c11c8a4e8ba3e7e081a2f0084d.jpg', '/static/file/20230705/c53480ca242a464d8df2a7227133f85b.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (61, 61, '慕曦', '/static/file/20230705/bf64d1b4e87b4391b421d1bf29705ee0.jpg', '户外婚礼', NULL, 0, '2023-07-05 11:24:51', 1, NULL, '/static/file/20230705/bf64d1b4e87b4391b421d1bf29705ee0.jpg', '/static/file/20230705/7cd5967d547b4036882d3fbd59eac815.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (62, 61, '慕曦', '/static/file/20230705/644e058769d64c9884d11376dd5ddead.jpg', '水晶下的爱恋', NULL, 0, '2023-07-05 11:28:45', 1, NULL, '/static/file/20230705/644e058769d64c9884d11376dd5ddead.jpg', '/static/file/20230705/a372d1d8a6b541e1a692de24ac2ddc06.mp4', NULL);
+INSERT INTO `ums_business_work` VALUES (63, 61, '慕曦', '/static/file/20230705/c7fbaa8a09f84ecbb5278309b3b49baf.jpg', '互动', NULL, 0, '2023-07-05 11:38:32', 1, NULL, '/static/file/20230705/c7fbaa8a09f84ecbb5278309b3b49baf.jpg', '/static/file/20230705/aa9519e74945408bbc34125e30c47cce.mp4', NULL);
 
 -- ----------------------------
 -- Table structure for ums_business_workcomment
@@ -1093,7 +1121,7 @@ CREATE TABLE `ums_business_workstar`  (
   `type` int(11) NULL DEFAULT NULL COMMENT '1婚礼作品点赞，2主持人动态点赞，3.婚礼作品评论点赞, 4 主持人动态评论点赞, 5婚礼作品收藏,6主持人动态收藏',
   `comment_id` int(11) NULL DEFAULT NULL COMMENT '评论id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 188 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '点赞收藏表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 192 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '点赞收藏表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_business_workstar
@@ -1110,6 +1138,7 @@ INSERT INTO `ums_business_workstar` VALUES (184, 21, 18, 30, 1, NULL);
 INSERT INTO `ums_business_workstar` VALUES (185, 26, 48, 30, 2, NULL);
 INSERT INTO `ums_business_workstar` VALUES (186, 21, 18, 33, 1, NULL);
 INSERT INTO `ums_business_workstar` VALUES (187, 26, 48, 33, 2, NULL);
+INSERT INTO `ums_business_workstar` VALUES (191, 45, 75, 36, 1, NULL);
 
 -- ----------------------------
 -- Table structure for ums_business_workvideo

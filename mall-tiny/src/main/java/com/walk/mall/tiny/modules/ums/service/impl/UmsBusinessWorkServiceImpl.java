@@ -42,7 +42,9 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
         }
         
         if(!Objects.isNull(id)){
-            queryWrapper.lambda().eq(UmsBusinessWork::getId,id);
+            queryWrapper.lambda()
+            .eq(UmsBusinessWork::getId,id)
+            .orderByAsc(UmsBusinessWork::getSortId);
             UmsBusinessWork umsBusinessWork = new UmsBusinessWork();
             umsBusinessWork = this.getById(id);
             umsBusinessWork.setViewNumber(this.getById(id).getViewNumber()+1);

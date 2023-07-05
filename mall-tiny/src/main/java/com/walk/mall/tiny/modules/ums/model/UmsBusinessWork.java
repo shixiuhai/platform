@@ -112,6 +112,7 @@ public class UmsBusinessWork implements Serializable{
     @TableField(exist=false)
     private String icon;
 
-    
+    // 排序id
+    private Long sortId;
 
 }
