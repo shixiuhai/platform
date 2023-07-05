@@ -32,9 +32,19 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
         Page<UmsBusinessWork> pages = new Page<>(pageNum,pageSize);
         QueryWrapper<UmsBusinessWork> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()
-        .orderByDesc(UmsBusinessWork::getCreatedTime)
         .eq(!Objects.isNull(type),UmsBusinessWork::getType,type)
         .eq(!Objects.isNull(anchorId),UmsBusinessWork::getAuthorId, anchorId);
+        
+
+        // 如果没有传作者id整体按照时间排序降序
+        if(Objects.isNull(anchorId)){
+            queryWrapper.lambda()
+            .orderByDesc(UmsBusinessWork::getCreatedTime);
+
+        }else{
+             queryWrapper.lambda()
+            .orderByAsc(UmsBusinessWork::getSortId);
+        }
         
         if(StrUtil.isNotEmpty(keyword)){
             queryWrapper.lambda().like(UmsBusinessWork::getAnthorName,keyword);
@@ -43,8 +53,7 @@ public class UmsBusinessWorkServiceImpl extends ServiceImpl<UmsBusinessWorkMappe
         
         if(!Objects.isNull(id)){
             queryWrapper.lambda()
-            .eq(UmsBusinessWork::getId,id)
-            .orderByAsc(UmsBusinessWork::getSortId);
+            .eq(UmsBusinessWork::getId,id);
             UmsBusinessWork umsBusinessWork = new UmsBusinessWork();
             umsBusinessWork = this.getById(id);
             umsBusinessWork.setViewNumber(this.getById(id).getViewNumber()+1);
